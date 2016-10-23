@@ -23,6 +23,9 @@ sink("data/eda-output.txt")
 cat("Summary of Quantiative Variables in Credit:\n")
 t(apply(quant_credit,2,getSummary))
 
+cat("Frequency and Relative Frequency:\n")
+getFreq(cat_credit)
+
 cat("\n Correlation Matrix:\n")
 lower
 sink()

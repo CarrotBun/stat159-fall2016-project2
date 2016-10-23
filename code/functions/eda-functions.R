@@ -19,9 +19,11 @@ getFreq <- function(data){
 
 organize_freq <- function(freqList, total){
 	for (i in 1:length(freqList)){
-		print(names(freqList)[i])
-		#print(head(freqList[[i]]))
-		print(rbind(freqList[[i]], freqList[[i]]/total))
+		cat(names(freqList)[i], "\n")
+		tb <- rbind(freqList[[i]], freqList[[i]]/total)
+		rownames(tb)<- c("Count", "Relative Frequency")
+		print(tb)
+		cat("\n")
 	}
 
 }
