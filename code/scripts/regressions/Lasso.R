@@ -48,9 +48,18 @@ dev.off()
 # refit model on full data set
 lasso_pred_coef = predict(lasso_reg, as.matrix(credit[ , 1:11]), s = "lambda.min")
 
-# saved to RData
-save(lasso_reg, lasso_reg_min_lambda, test_lasso_reg, lasso_pred_coef,
-     file = "data/lasso-regression.RData")
+# save to RData
+save(lasso_reg, test_lasso_reg, file = "data/lasso-regression.RData")
+
+# save to textfile
+sink("data/lasso-output.txt")
+cat("lambda")
+lasso_reg_min_lambda
+cat("\n")
+cat("coefficients")
+cat("\n")
+lasso_pred_coef
+sink()
 
 
 
