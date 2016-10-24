@@ -1,6 +1,10 @@
 Best Lambda:
 [1] 0.01
-Official Coefficients:
+
+ Test MSE:
+[1] 0.0555935
+
+ Official Coefficients:
 13 x 1 sparse Matrix of class "dgCMatrix"
                                1
 (Intercept)         7.600318e-16
@@ -16,5 +20,3 @@ StudentYes          2.493705e-01
 MarriedYes         -1.283518e-02
 EthnicityAsian      1.246295e-02
 EthnicityCaucasian  9.924721e-03
-Test MSE:
-[1] 0.0555935
