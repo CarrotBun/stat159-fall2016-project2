@@ -7,6 +7,7 @@ images = $(wildcard images/*.png)
 rmds = $(wildcard report/sections/*.md)
 slides = slides/slides
 dataset = data/Credit.csv
+sdata = data/scaled-credit.csv
 
 # declaring phony targets
 .PHONY: all data tests eda ols ridge lasso pcr plsr $(reg) report slides session clean
@@ -27,7 +28,7 @@ eda: data/eda-output.txt
 
 ols: 
 
-ridge:
+ridge: data/Ridge-Regression.RData
 
 lasso:
 
@@ -67,6 +68,12 @@ data/eda-output.txt: $(script)/eda-script.R $(dataset)
 data/correlation-matrix.RData: $(script)/eda-script.R $(dataset)
 	Rscript $<
 
+
+data/Ridge-Regression.RData: $(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/ridge-results.txt:$(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
 
 # remove report
 clean:
