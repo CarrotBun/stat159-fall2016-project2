@@ -3,6 +3,7 @@ set.seed(159)
 
 # Load Data and T-T indicies
 source("code/scripts/Train-Test.R")
+credit = read.csv("data/scaled-credit.csv")
 
 x = model.matrix(Balance ~ .,data = credit)[,-1]
 y = credit$Balance
