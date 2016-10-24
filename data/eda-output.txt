@@ -1,0 +1,26 @@
+Summary of Quantiative Variables in Credit:
+Frequency and Relative Frequency:
+Gender 
+                       Male   Female
+Count              193.0000 207.0000
+Relative Frequency   0.4825   0.5175
+
+Student 
+                      No  Yes
+Count              360.0 40.0
+Relative Frequency   0.9  0.1
+
+Married 
+                         No      Yes
+Count              155.0000 245.0000
+Relative Frequency   0.3875   0.6125
+
+Ethnicity 
+                   African American   Asian Caucasian
+Count                       99.0000 102.000  199.0000
+Relative Frequency           0.2475   0.255    0.4975
+
+
+ Correlation Matrix:
+
+ anova output for Balance and Qualitative variables:
