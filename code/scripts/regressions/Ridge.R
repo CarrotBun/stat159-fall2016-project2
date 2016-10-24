@@ -42,7 +42,7 @@ sink("data/ridge-results.txt")
 cat("Best Lambda:\n")
 bestlam
 cat("\n Test MSE:\n")
-testMSE
+ridge_tMSE
 cat("\n Official Coefficients:\n")
 ridge_final
 
