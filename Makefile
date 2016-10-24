@@ -32,7 +32,7 @@ ridge: data/Ridge-Regression.RData
 
 lasso:
 
-pcr:
+pcr: data/PCR-Regression.RData
 
 plsr:
 
@@ -74,6 +74,13 @@ data/Ridge-Regression.RData: $(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(s
 
 data/ridge-results.txt:$(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(sdata)
 	Rscript $<
+
+data/PCR-Regression.RData: $(script)/$(reg)/PCR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/pcr-results.txt:$(script)/$(reg)/PCR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
 
 # remove report
 clean:
