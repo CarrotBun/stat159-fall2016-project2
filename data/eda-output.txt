@@ -1,5 +1,22 @@
 Summary of Quantiative Variables in Credit:
-Frequency and Relative Frequency:
+            Min. 1st Qu.  Median     Mean 3rd Qu.    Max.     IQR    Range
+Income     10.35   21.01   33.12   45.220   57.47   186.6   36.46   176.28
+Limit     855.00 3088.00 4622.00 4736.000 5873.00 13910.0 2784.75 13058.00
+Rating     93.00  247.20  344.00  354.900  437.20   982.0  190.00   889.00
+Cards       1.00    2.00    3.00    2.958    4.00     9.0    2.00     8.00
+Age        23.00   41.75   56.00   55.670   70.00    98.0   28.25    75.00
+Education   5.00   11.00   14.00   13.450   16.00    20.0    5.00    15.00
+Balance     0.00   68.75  459.50  520.000  863.00  1999.0  794.25  1999.00
+               SD
+Income      35.24
+Limit     2308.20
+Rating     154.72
+Cards        1.37
+Age         17.25
+Education    3.13
+Balance    459.76
+
+ Frequency and Relative Frequency:
 Gender 
                        Male   Female
 Count              193.0000 207.0000
@@ -22,5 +39,24 @@ Relative Frequency           0.2475   0.255    0.4975
 
 
  Correlation Matrix:
+          Income  Limit Rating   Cards    Age Education Balance
+Income         1 0.7921 0.7914 -0.0183 0.1753   -0.0277  0.4637
+Limit                 1 0.9969  0.0102 0.1009   -0.0235  0.8617
+Rating                       1  0.0532 0.1032   -0.0301  0.8636
+Cards                                1 0.0429   -0.0511  0.0865
+Age                                         1    0.0036  0.0018
+Education                                             1 -0.0081
+Balance                                                       1
 
  anova output for Balance and Qualitative variables:
+Call:
+   aov(formula = Balance ~ Gender + Student + Married + Ethnicity, 
+    data = credit)
+
+Terms:
+                  Gender  Student  Married Ethnicity Residuals
+Sum of Squares     38892  5623889    16976     58038  78602117
+Deg. of Freedom        1        1        1         2       394
+
+Residual standard error: 446.6517
+Estimated effects may be unbalanced

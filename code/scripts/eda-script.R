@@ -10,19 +10,20 @@ quant_credit <- credit[,c(2:7,12)]
 cat_credit <- credit[,c(8:11)]
 
 # Creating Upper Triangular Correlation Matrix
-corr_matrix <- round(quant_credit,4)
+corr_matrix <- round(cor(quant_credit),4)
 lower <- corr_matrix
 lower[lower.tri(corr_matrix, diag =FALSE)] <- ""
 lower <- data.frame(lower)
 
+sum_df <- t(apply(quant_credit,2,getSummary))
 
 #Save Data to eda-output
 sink("data/eda-output.txt")
 
 cat("Summary of Quantiative Variables in Credit:\n")
-t(apply(quant_credit,2,getSummary))
+sum_df
 
-cat("Frequency and Relative Frequency:\n")
+cat("\n Frequency and Relative Frequency:\n")
 getFreq(cat_credit)
 
 cat("\n Correlation Matrix:\n")
@@ -69,6 +70,8 @@ ggsave("images/boxplot-Ethnicity.png")
 png(filename="images/scatterplot-matrix.png")
 pairs(quant_credit,pch=18)
 dev.off()
+
+
 
 save(lower, file = "data/correlation-matrix.RData")
 
