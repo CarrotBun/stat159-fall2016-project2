@@ -2,9 +2,11 @@
 # declare variables
 reg = regressions
 paper = report/report
+script = code/scripts
 images = $(wildcard images/*.png)
 rmds = $(wildcard report/sections/*.md)
 slides = slides/slides
+dataset = data/Credit.csv
 
 # declaring phony targets
 .PHONY: all data tests eda ols ridge lasso pcr plsr $(reg) report slides session clean
@@ -14,7 +16,7 @@ all: eda $(reg) report
 
 # download data file
 data:
-	curl -o data/Credit.csv "http://www-bcf.usc.edu/~gareth/ISL/Credit.csv"
+	curl -o $(dataset) "http://www-bcf.usc.edu/~gareth/ISL/Credit.csv"
 
 # run all tests through test-that
 tests:
@@ -62,7 +64,8 @@ $(paper).pdf: $(paper).Rmd data/$(reg).RData $(images)
 data/eda-output.txt: $(script)/eda-script.R $(dataset)
 	Rscript $<
 
-
+data/correlation-matrix.RData: $(script)/eda-script.R $(dataset)
+	Rscript $<
 
 
 # remove report
