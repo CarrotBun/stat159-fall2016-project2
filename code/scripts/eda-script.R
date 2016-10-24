@@ -55,16 +55,16 @@ ggplot(credit) + geom_histogram(aes(Balance))
 ggsave("images/histogram-balance.png")
 
 ggplot(credit, aes(x= Gender, y = Balance))+ geom_boxplot()
-ggsave("images/boxplot-Gender")
+ggsave("images/boxplot-Gender.png")
 
 ggplot(credit, aes(x= Married, y = Balance))+ geom_boxplot()
-ggsave("images/boxplot-Married")
+ggsave("images/boxplot-Married.png")
 
 ggplot(credit, aes(x= Student, y = Balance))+ geom_boxplot()
-ggsave("images/boxplot-Student")
+ggsave("images/boxplot-Student.png")
 
-ggplot(credit, aes(x= Ethnicity y = Balance))+ geom_boxplot()
-ggsave("images/boxplot-Ethnicity")
+ggplot(credit, aes(x= Ethnicity, y = Balance))+ geom_boxplot()
+ggsave("images/boxplot-Ethnicity.png")
 
 png(filename="images/scatterplot-matrix.png")
 pairs(quant_credit,pch=18)
