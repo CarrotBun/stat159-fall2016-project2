@@ -5,7 +5,7 @@ source("code/scripts/Train-Test.R")
 
 credit = read.csv("data/scaled-credit.csv")
 
-x = model.matrix(Balance ~ .,data = credit) 
+x = model.matrix(Balance ~ .,data = credit)[,-1]
 y = credit$Balance
 y.test = y[test_set_indices]
 
