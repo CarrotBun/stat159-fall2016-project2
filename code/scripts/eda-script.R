@@ -5,19 +5,18 @@ library(dplyr)
 source("code/functions/eda-functions.R")
 credit <- read.csv("data/Credit.csv")
 
+# Subset by variable type
 quant_credit <- credit[,c(2:7,12)]
 cat_credit <- credit[,c(8:11)]
 
-
-
-
+# Creating Upper Triangular Correlation Matrix
 corr_matrix <- round(quant_credit,4)
 lower <- corr_matrix
 lower[lower.tri(corr_matrix, diag =FALSE)] <- ""
 lower <- data.frame(lower)
 
 
-
+#Save Data to eda-output
 sink("data/eda-output.txt")
 
 cat("Summary of Quantiative Variables in Credit:\n")
@@ -28,22 +27,48 @@ getFreq(cat_credit)
 
 cat("\n Correlation Matrix:\n")
 lower
+
+cat("\n anova output for Balance and Qualitative variables:\n")
+aov(Balance~Gender + Student + Married + Ethnicity, credit)
 sink()
 
-ggplot(ad_data) + geom_histogram(aes(TV))
-ggsave("images/histogram-tv.png")
+# Create plots
+ggplot(credit) + geom_histogram(aes(Income))
+ggsave("images/histogram-Income.png")
 
-ggplot(ad_data) + geom_histogram(aes(Radio))
-ggsave("images/histogram-radio.png")
+ggplot(credit) + geom_histogram(aes(Limit))
+ggsave("images/histogram-Limit.png")
 
-ggplot(ad_data) + geom_histogram(aes(Newspaper))
-ggsave("images/histogram-newspaper.png")
+ggplot(credit) + geom_histogram(aes(Rating))
+ggsave("images/histogram-Rating.png")
 
-ggplot(ad_data) + geom_histogram(aes(Sales))
-ggsave("images/histogram-sales.png")
+ggplot(credit) + geom_histogram(aes(Cards))
+ggsave("images/histogram-Cards.png")
+
+ggplot(credit) + geom_histogram(aes(Age))
+ggsave("images/histogram-age.png")
+
+ggplot(credit) + geom_histogram(aes(Education))
+ggsave("images/histogram-education.png")
+
+ggplot(credit) + geom_histogram(aes(Balance))
+ggsave("images/histogram-balance.png")
+
+ggplot(credit, aes(x= Gender, y = Balance))+ geom_boxplot()
+ggsave("images/boxplot-Gender")
+
+ggplot(credit, aes(x= Married, y = Balance))+ geom_boxplot()
+ggsave("images/boxplot-Married")
+
+ggplot(credit, aes(x= Student, y = Balance))+ geom_boxplot()
+ggsave("images/boxplot-Student")
+
+ggplot(credit, aes(x= Ethnicity y = Balance))+ geom_boxplot()
+ggsave("images/boxplot-Ethnicity")
 
 png(filename="images/scatterplot-matrix.png")
-pairs(ad_data[-1],pch=18)
+pairs(quant_credit,pch=18)
 dev.off()
 
 save(lower, file = "data/correlation-matrix.RData")
+

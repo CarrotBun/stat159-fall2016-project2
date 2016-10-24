@@ -17,6 +17,7 @@ getFreq <- function(data){
 	
 }
 
+# Helper function for output
 organize_freq <- function(freqList, total){
 	for (i in 1:length(freqList)){
 		cat(names(freqList)[i], "\n")
