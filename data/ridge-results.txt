@@ -5,10 +5,9 @@ Best Lambda:
 [1] 0.0555935
 
  Official Coefficients:
-13 x 1 sparse Matrix of class "dgCMatrix"
+12 x 1 sparse Matrix of class "dgCMatrix"
                                1
 (Intercept)         7.600318e-16
-(Intercept)         .           
 Income             -3.967202e-01
 Limit               5.747912e-01
 Rating              5.588941e-01
