@@ -4,7 +4,7 @@ Best Model:
  Test MSE:
 [1] 0.05554999
 
- Official Coefficients:
+ Official Model and Coefficients:
 Data: 	X dimension: 400 11 
 	Y dimension: 400 1
 Fit method: svdpc
@@ -16,3 +16,19 @@ Balance    58.07    58.37    60.78    60.90    61.46    63.11    68.70    68.71
          9 comps  10 comps  11 comps
 X          97.60     99.98    100.00
 Balance    68.72     95.47     95.51
+
+, , 11 comps
+
+                        Balance
+Income             -0.598171486
+Limit               0.958438722
+Rating              0.382478949
+Cards               0.052864969
+Age                -0.023033397
+Education          -0.007469459
+GenderFemale       -0.011593092
+StudentYes          0.278154853
+MarriedYes         -0.009054196
+EthnicityAsian      0.015950671
+EthnicityCaucasian  0.011005286
+

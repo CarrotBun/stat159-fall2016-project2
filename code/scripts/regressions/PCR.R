@@ -37,8 +37,10 @@ cat("Best Model:\n")
 bestmodel
 cat("\n Test MSE:\n")
 pcr_tMSE
-cat("\n Official Coefficients:\n")
+cat("\n Official Model and Coefficients:\n")
 summary(pcr_final)
+cat("\n")
+coefficients(pcr_final)
 
 sink()
 
