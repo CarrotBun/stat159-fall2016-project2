@@ -17,7 +17,8 @@ ridge_reg = glmnet(x[train_set_indices,],y[train_set_indices],
 
 # Cross Validation, set seed to make work reproducible
 set.seed(159)
-ridge_cv = cv.glmnet(x[train_set_indices ,],y[train_set_indices], alpha =0, nfold = 10, lambda = grid, intercept =FALSE,standardize = FALSE)
+ridge_cv = cv.glmnet(x[train_set_indices ,],y[train_set_indices], alpha =0,
+ nfold = 10, lambda = grid, intercept =FALSE,standardize = FALSE)
 
 # Best lambda/model
 bestlam=ridge_cv$lambda.min
@@ -32,8 +33,8 @@ ridge_pred = predict(ridge_reg,s=bestlam,newx=x[test_set_indices,])
 ridge_tMSE <- mean((ridge_pred-y.test)^2)
 
 #Full Model
-out=glmnet(x,y,alpha=0)
-ridge_final <- predict(out,type="coefficients",s=bestlam)
+out=glmnet(x,y,alpha=0,lambda = bestlam, intercept =FALSE,standardize = FALSE)
+ridge_final <- predict(out,type="coefficients")
 
 
 # output primary results

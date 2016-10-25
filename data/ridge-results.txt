@@ -6,16 +6,16 @@ Best Lambda:
 
  Official Coefficients:
 12 x 1 sparse Matrix of class "dgCMatrix"
-                               1
-(Intercept)         7.600318e-16
-Income             -3.967202e-01
-Limit               5.747912e-01
-Rating              5.588941e-01
-Cards               4.714329e-02
-Age                -3.588969e-02
-Education          -3.222368e-03
-GenderFemale       -5.283531e-03
-StudentYes          2.493705e-01
-MarriedYes         -1.283518e-02
-EthnicityAsian      1.246295e-02
-EthnicityCaucasian  9.924721e-03
+                             s0
+(Intercept)         .          
+Income             -0.568706769
+Limit               0.718657903
+Rating              0.593058827
+Cards               0.044252756
+Age                -0.025384931
+Education          -0.005879651
+GenderFemale       -0.010677773
+StudentYes          0.273184181
+MarriedYes         -0.011027761
+EthnicityAsian      0.016378729
+EthnicityCaucasian  0.011011789
