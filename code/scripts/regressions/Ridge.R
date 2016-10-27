@@ -13,7 +13,7 @@ grid = 10^seq(10, -2, length = 100)
 
 # Run ridge regression on training set
 ridge_reg = glmnet(x[train_set_indices,],y[train_set_indices], 
-	alpha = 0,lambda = grid)
+	alpha = 0,lambda = grid, intercept =FALSE,standardize = FALSE)
 
 # Cross Validation, set seed to make work reproducible
 set.seed(159)
