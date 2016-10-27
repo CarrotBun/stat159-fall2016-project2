@@ -8,6 +8,7 @@ rmds = $(wildcard report/sections/*.md)
 slides = slides/slides
 dataset = data/Credit.csv
 sdata = data/scaled-credit.csv
+session = session-info
 
 # declaring phony targets
 .PHONY: all data tests eda ols ridge lasso pcr plsr $(reg) report slides session clean
@@ -103,6 +104,9 @@ data/PLS-Regression.RData: $(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdat
 data/PLS-results.txt:$(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdata)
 	Rscript $<
 
+$(session).txt: $(script)/$(session)-script.R
+	Rscript $<
+	
 # remove report
 clean:
 	rm -f report/*.pdf

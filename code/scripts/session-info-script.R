@@ -2,7 +2,7 @@ library(ggplot2)
 library(xtable)
 library(glmnet)
 library(pls)
-library(rmarkdwon)
+library(rmarkdown)
 
 sink("session-info.txt")
 sessionInfo()
