@@ -26,15 +26,15 @@ tests:
 # phony target for eda
 eda: data/eda-output.txt
 
-ols: 
+ols: data/OLS-Regression.RData
 
 ridge: data/Ridge-Regression.RData
 
-lasso:
+lasso: data/Lasso-Regression.RData
 
 pcr: data/PCR-Regression.RData
 
-plsr:
+plsr: data/PLS-Regression.RData
 
 # phony target for regression
 $(reg): 
@@ -68,19 +68,40 @@ data/eda-output.txt: $(script)/eda-script.R $(dataset)
 data/correlation-matrix.RData: $(script)/eda-script.R $(dataset)
 	Rscript $<
 
+# OLS Regression Outputs
+data/OLS-Regression.RData: $(script)/$(reg)/OLS.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
 
+data/ols-results.txt:$(script)/$(reg)/OLS.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+# Ridge Regression Outputs
 data/Ridge-Regression.RData: $(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(sdata)
 	Rscript $<
 
 data/ridge-results.txt:$(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(sdata)
 	Rscript $<
 
+# Lasso Regression Ouputs
+data/Lasso-Regression.RData: $(script)/$(reg)/Lasso.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/lasso-results.txt:$(script)/$(reg)/Lasso.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+# PCR Regression Ouputs
 data/PCR-Regression.RData: $(script)/$(reg)/PCR.R $(script)/Train-Test.R $(sdata)
 	Rscript $<
 
 data/pcr-results.txt:$(script)/$(reg)/PCR.R $(script)/Train-Test.R $(sdata)
 	Rscript $<
 
+# PLS Regression Ouputs
+data/PLS-Regression.RData: $(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/PLS-results.txt:$(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
 
 # remove report
 clean:
