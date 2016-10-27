@@ -22,7 +22,7 @@ data:
 
 # run all tests through test-that
 tests:
-	#Rscript code/test-that.R
+	Rscript code/test-that.R
 
 # phony target for eda
 eda: data/eda-output.txt
@@ -106,7 +106,7 @@ data/PLS-results.txt:$(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdata)
 
 $(session).txt: $(script)/$(session)-script.R
 	Rscript $<
-	
+
 # remove report
 clean:
 	rm -f report/*.pdf
