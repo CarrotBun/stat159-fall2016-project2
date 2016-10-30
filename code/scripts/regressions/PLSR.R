@@ -32,7 +32,7 @@ lines(credit[test_set_indices, 12], col = "black")
 
 legend(0, 3, legend = c("Predicted", "Actual"), fill = c("red", "black"), bty = "n")
 ##########################################################################################
-
+pls_pred = predict(pls_reg, as.matrix(credit[test_set_indices, 1:11]), ncomp = bestmodel)
 pls_tMSE = mean((pls_pred - credit[test_set_indices, 12])^2) 
 
 # prediction on full data set
@@ -42,6 +42,16 @@ pls_final = plsr(as.vector(credit[ ,12]) ~ as.matrix(credit[ ,1:11]),
 # save regressions
 save(pls_reg, bestmodel, pls_tMSE, pls_final, file = "data/PLS-Regression.RData")
 
+sink("data/PLSR-results.txt")
+cat("\n best model:")
+bestmodel
+cat("\n PLSR test MSE:")
+pls_tMSE
+cat("\n PLS Regression on Train \n")
+summary(pls_reg)
+cat("\n PLS Regression on Full Data \n")
+summary(pls_final)
+sink()
 
 
 
