@@ -4,10 +4,12 @@ credit = read.csv("data/scaled-credit.csv")
 source("code/functions/regression-functions.R")
 source("code/scripts/Train-Test.R")
 
+credit[test_set_indices,]
 # OLS regression
-OLS_reg = lm(Balance ~., data = credit[test_set_indices,])
-
-OLS_tMSE = mean(residuals(OLS_reg)^2)
+y.test = credit[test_set_indices,]$Balance
+OLS_reg = lm(Balance ~., data = credit[train_set_indices,])
+OLS_pred = predict(OLS_reg, credit[test_set_indices,])
+OLS_tMSE = mean((OLS_pred-y.test)^2)
 
 # table summary
 library(pander)
