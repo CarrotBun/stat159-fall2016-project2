@@ -4,7 +4,6 @@ credit = read.csv("data/scaled-credit.csv")
 source("code/functions/regression-functions.R")
 source("code/scripts/Train-Test.R")
 
-credit[test_set_indices,]
 # OLS regression
 y.test = credit[test_set_indices,]$Balance
 OLS_reg = lm(Balance ~., data = credit[train_set_indices,])
