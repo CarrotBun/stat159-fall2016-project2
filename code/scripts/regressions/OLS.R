@@ -2,11 +2,12 @@
 # import data
 credit = read.csv("data/scaled-credit.csv")
 source("code/functions/regression-functions.R")
+source("code/scripts/Train-Test.R")
 
 # OLS regression
-OLS_reg = lm(Balance ~., data = credit)
+OLS_reg = lm(Balance ~., data = credit[test_set_indices,])
 
-OLS_tMSE = sqrt(residual_std_error(OLS_reg))
+OLS_tMSE = mean(residuals(OLS_reg)^2)
 
 # table summary
 library(pander)
