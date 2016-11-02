@@ -4,7 +4,7 @@ reg = regressions
 paper = report/report
 script = code/scripts
 images = $(wildcard images/*.png)
-rmds = $(wildcard report/sections/*.md)
+rmds = $(wildcard report/sections/*.Rmd)
 slides = slides/slides
 dataset = data/Credit.csv
 sdata = data/scaled-credit.csv
@@ -59,7 +59,7 @@ $(paper).Rmd: $(rmds)
 	cat $(rmds) > $(paper).Rmd
 
 # generate pdf by running Rmd
-$(paper).pdf: $(paper).Rmd data/$(reg).RData $(images)
+$(paper).pdf: $(paper).Rmd $(images)
 	Rscript -e "library(rmarkdown); render('$(paper).Rmd','pdf_document')"
 
 # generate summary txt file from Rscript
