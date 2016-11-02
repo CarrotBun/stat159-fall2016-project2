@@ -47,13 +47,13 @@ ggplot(credit) + geom_histogram(aes(Cards))
 ggsave("images/histogram-Cards.png")
 
 ggplot(credit) + geom_histogram(aes(Age))
-ggsave("images/histogram-age.png")
+ggsave("images/histogram-Age.png")
 
 ggplot(credit) + geom_histogram(aes(Education))
-ggsave("images/histogram-education.png")
+ggsave("images/histogram-Education.png")
 
 ggplot(credit) + geom_histogram(aes(Balance))
-ggsave("images/histogram-balance.png")
+ggsave("images/histogram-Balance.png")
 
 ggplot(credit, aes(x= Gender, y = Balance))+ geom_boxplot()
 ggsave("images/boxplot-Gender.png")
