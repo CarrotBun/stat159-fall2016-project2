@@ -34,25 +34,25 @@ aov(Balance~Gender + Student + Married + Ethnicity, credit)
 sink()
 
 # Create plots
-ggplot(credit) + geom_histogram(aes(Income))
+ggplot(credit) + geom_histogram(aes(Income),binwidth = 10)
 ggsave("images/histogram-Income.png")
 
-ggplot(credit) + geom_histogram(aes(Limit))
+ggplot(credit) + geom_histogram(aes(Limit),binwidth = 1000)
 ggsave("images/histogram-Limit.png")
 
-ggplot(credit) + geom_histogram(aes(Rating))
+ggplot(credit) + geom_histogram(aes(Rating),binwidth = 50)
 ggsave("images/histogram-Rating.png")
 
-ggplot(credit) + geom_histogram(aes(Cards))
+ggplot(credit) + geom_histogram(aes(Cards),binwidth = 1)
 ggsave("images/histogram-Cards.png")
 
-ggplot(credit) + geom_histogram(aes(Age))
+ggplot(credit) + geom_histogram(aes(Age),binwidth = 5)
 ggsave("images/histogram-Age.png")
 
-ggplot(credit) + geom_histogram(aes(Education))
+ggplot(credit) + geom_histogram(aes(Education),binwidth=2)
 ggsave("images/histogram-Education.png")
 
-ggplot(credit) + geom_histogram(aes(Balance))
+ggplot(credit) + geom_histogram(aes(Balance),binwidth = 100)
 ggsave("images/histogram-Balance.png")
 
 ggplot(credit, aes(x= Gender, y = Balance))+ geom_boxplot()
