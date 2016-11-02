@@ -3,13 +3,6 @@
 
 The credit data used in this project includes both categorical and quantitative data.   
 
-Categorical variables include  
-
-* Gender: Female or Male
-* Student: Yes or No
-* Married: Yes or No, and
-* Ethnicity: African, American, Asian, or Caucasian
-
 Quantitative variables are  
 
 * Income
@@ -32,4 +25,21 @@ Distribution of quantitative variables is shown below in Figure 1.
 
 Below is the histogram showing the distribution of Balance:  
 ![Balance](../images/histogram-Balance.png)
+
+
+Categorical variables include  
+
+* Gender: Female or Male
+* Student: Yes or No
+* Married: Yes or No, and
+* Ethnicity: African, American, Asian, or Caucasian
+
+
+Distribution of categorical variables is shown below in Figure 3.
+
+\noindent
+\includegraphics[width=0.5\textwidth]{../images/boxplot-Gender.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/boxplot-Student.png}\
+\includegraphics[width=0.5\textwidth]{../images/boxplot-Married.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/boxplot-Ethnicity.png}\par
 
