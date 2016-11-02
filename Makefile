@@ -7,6 +7,8 @@ images = $(wildcard images/*.png)
 rmds = $(wildcard report/sections/*.md)
 slides = slides/slides
 dataset = data/Credit.csv
+sdata = data/scaled-credit.csv
+session = session-info
 
 # declaring phony targets
 .PHONY: all data tests eda ols ridge lasso pcr plsr $(reg) report slides session clean
@@ -20,20 +22,20 @@ data:
 
 # run all tests through test-that
 tests:
-	#Rscript code/test-that.R
+	Rscript code/test-that.R
 
 # phony target for eda
 eda: data/eda-output.txt
 
-ols: 
+ols: data/OLS-Regression.RData
 
-ridge:
+ridge: data/Ridge-Regression.RData
 
-lasso:
+lasso: data/Lasso-Regression.RData
 
-pcr:
+pcr: data/PCR-Regression.RData
 
-plsr:
+plsr: data/PLS-Regression.RData
 
 # phony target for regression
 $(reg): 
@@ -67,6 +69,43 @@ data/eda-output.txt: $(script)/eda-script.R $(dataset)
 data/correlation-matrix.RData: $(script)/eda-script.R $(dataset)
 	Rscript $<
 
+# OLS Regression Outputs
+data/OLS-Regression.RData: $(script)/$(reg)/OLS.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/ols-results.txt:$(script)/$(reg)/OLS.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+# Ridge Regression Outputs
+data/Ridge-Regression.RData: $(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/ridge-results.txt:$(script)/$(reg)/Ridge.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+# Lasso Regression Ouputs
+data/Lasso-Regression.RData: $(script)/$(reg)/Lasso.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/lasso-results.txt:$(script)/$(reg)/Lasso.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+# PCR Regression Ouputs
+data/PCR-Regression.RData: $(script)/$(reg)/PCR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/pcr-results.txt:$(script)/$(reg)/PCR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+# PLS Regression Ouputs
+data/PLS-Regression.RData: $(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+data/PLS-results.txt:$(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdata)
+	Rscript $<
+
+$(session).txt: $(script)/$(session)-script.R
+	Rscript $<
 
 # remove report
 clean:
