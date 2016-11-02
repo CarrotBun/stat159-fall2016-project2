@@ -1,0 +1,55 @@
+
+ best model:[1] 7
+
+ PLSR test MSE:[1] 0.05604687
+
+ PLS Regression on Train 
+Data: 	X dimension: 300 11 
+	Y dimension: 300 1
+Fit method: kernelpls
+Number of components considered: 11
+
+VALIDATION: RMSEP
+Cross-validated using 10 random segments.
+       (Intercept)  1 comps  2 comps  3 comps  4 comps
+CV          0.9929   0.5485   0.3616   0.2277   0.2156
+adjCV       0.9929   0.5477   0.3592   0.2232   0.2147
+       5 comps  6 comps  7 comps  8 comps  9 comps
+CV      0.2154   0.2152   0.2152   0.2164   0.2159
+adjCV   0.2148   0.2147   0.2147   0.2158   0.2152
+       10 comps  11 comps
+CV       0.2155    0.2155
+adjCV    0.2149    0.2149
+
+TRAINING: % variance explained
+                                          1 comps  2 comps
+X                                           23.46    30.66
+as.vector(credit[train_set_indices, 12])    70.51    87.81
+                                          3 comps  4 comps
+X                                           35.91    45.99
+as.vector(credit[train_set_indices, 12])    95.51    95.71
+                                          5 comps  6 comps
+X                                           58.22    65.55
+as.vector(credit[train_set_indices, 12])    95.72    95.72
+                                          7 comps  8 comps
+X                                           72.70    80.64
+as.vector(credit[train_set_indices, 12])    95.72    95.72
+                                          9 comps  10 comps
+X                                           81.18     90.65
+as.vector(credit[train_set_indices, 12])    95.75     95.75
+                                          11 comps
+X                                           100.00
+as.vector(credit[train_set_indices, 12])     95.75
+
+ PLS Regression on Full Data 
+Data: 	X dimension: 400 11 
+	Y dimension: 400 1
+Fit method: kernelpls
+Number of components considered: 7
+TRAINING: % variance explained
+                         1 comps  2 comps  3 comps  4 comps
+X                          24.58    32.53    37.84    50.55
+as.vector(credit[, 12])    69.67    86.53    94.95    95.46
+                         5 comps  6 comps  7 comps
+X                          60.80    65.92    73.20
+as.vector(credit[, 12])    95.48    95.48    95.48
