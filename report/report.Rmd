@@ -22,22 +22,14 @@ Quantitative variables are
 
 Distribution of quantitative variables is shown below in Figure 1.
 
-```{r histograms, echo = FALSE}
-library(png)
-library(grid)
-library(gridExtra)
-
-Age_H <-  rasterGrob(as.raster(readPNG("../images/histogram-Age.png")), interpolate = FALSE)
-Cards_H <-  rasterGrob(as.raster(readPNG("../images/histogram-Cards.png")), interpolate = FALSE)
-Educ_H <-  rasterGrob(as.raster(readPNG("../images/histogram-Education.png")), interpolate = FALSE)
-Income_H <-  rasterGrob(as.raster(readPNG("../images/histogram-Income.png")), interpolate = FALSE)
-Limit_H <-  rasterGrob(as.raster(readPNG("../images/histogram-Limit.png")), interpolate = FALSE)
-Rating_H <-  rasterGrob(as.raster(readPNG("../images/histogram-Rating.png")), interpolate = FALSE)
-
-grid.arrange(Income_H, Limit_H, Rating_H,
-				Cards_H, Age_H, Educ_H, widths=c(0.3, 0.7),
-             ncol = 2)
-```
+\noindent
+\includegraphics[width=0.5\textwidth]{../images/histogram-Income.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/histogram-Limit.png}\
+\includegraphics[width=0.5\textwidth]{../images/histogram-Rating.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/histogram-Cards.png}\
+\includegraphics[width=0.5\textwidth]{../images/histogram-Age.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/histogram-Education.png}\par
 
 Below is the histogram showing the distribution of Balance:  
 ![Balance](../images/histogram-Balance.png)
+
