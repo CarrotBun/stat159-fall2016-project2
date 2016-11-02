@@ -1,0 +1,4 @@
+
+ best lamba:[1] 0.01
+
+ Lasso test MSE:[1] 0.05515175
