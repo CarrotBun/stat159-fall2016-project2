@@ -1,3 +1,8 @@
 .DS_Store
 Rplots.pdf
+<<<<<<< HEAD
+.Rhistory
+.Rapp.history
+=======
 code/.Rapp.history
+>>>>>>> ddc2a44bb7d75c6b883d20f950d8e904ed3b32bb
