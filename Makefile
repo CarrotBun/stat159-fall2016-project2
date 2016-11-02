@@ -110,4 +110,5 @@ $(session).txt: $(script)/$(session)-script.R
 # remove report
 clean:
 	rm -f report/*.pdf
+	rm -f images/*.png
 	rm -f slides/*.html
