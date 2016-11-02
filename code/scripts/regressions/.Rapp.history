@@ -1,1 +1,0 @@
-credit = read.csv("data/scaled-credit.csv")
