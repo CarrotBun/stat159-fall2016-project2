@@ -9,8 +9,10 @@
 \includegraphics[width=0.5\textwidth]{../images/histogram-Age.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/histogram-Education.png}\par
 
-
+##### Figure 2: Distribution of Balance
 ![Fig 2: Balance](../images/histogram-Balance.png)
+
+##### Figure 3: Scatterplot Matrix for all quantiative variables
 ![Fig 3: Scatterplot Matrix](../images/scatterplot-matrix.png)
 
 
