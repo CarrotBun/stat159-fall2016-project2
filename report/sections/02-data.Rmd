@@ -13,33 +13,28 @@ Quantitative variables are
 * Education(years), and
 * Balance
 
-Distribution of quantitative variables is shown below in Figure 1.
-
-\noindent
-\includegraphics[width=0.5\textwidth]{../images/histogram-Income.png}\hspace{0.1\textwidth}
-\includegraphics[width=0.5\textwidth]{../images/histogram-Limit.png}\
-\includegraphics[width=0.5\textwidth]{../images/histogram-Rating.png}\hspace{0.1\textwidth}
-\includegraphics[width=0.5\textwidth]{../images/histogram-Cards.png}\
-\includegraphics[width=0.5\textwidth]{../images/histogram-Age.png}\hspace{0.1\textwidth}
-\includegraphics[width=0.5\textwidth]{../images/histogram-Education.png}\par
-
-Below is the histogram showing the distribution of Balance:  
-![Balance](../images/histogram-Balance.png)
-
-
-Categorical variables include  
+and Categorical variables include  
 
 * Gender: Female or Male
 * Student: Yes or No
 * Married: Yes or No, and
 * Ethnicity: African, American, Asian, or Caucasian
 
+To take a closer look at each variables included in the **Credit** dataset, we looked at the 
+Distributions of quantitative variables are shown below in Figure 1.
 
-Distribution of categorical variables is shown below in Figure 3.
 
-\noindent
-\includegraphics[width=0.5\textwidth]{../images/boxplot-Gender.png}\hspace{0.1\textwidth}
-\includegraphics[width=0.5\textwidth]{../images/boxplot-Student.png}\
-\includegraphics[width=0.5\textwidth]{../images/boxplot-Married.png}\hspace{0.1\textwidth}
-\includegraphics[width=0.5\textwidth]{../images/boxplot-Ethnicity.png}\par
+Below (in Figure 2) is the histogram showing the distribution of Balance:  
+
+A scatterplot matrix of all the quantitative variables are show below in Figure 3:  
+
+
+
+
+
+Distribution of categorical variables is shown below in Figure 4.
+
+
+
+
 
