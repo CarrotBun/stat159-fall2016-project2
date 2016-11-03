@@ -52,7 +52,8 @@ report: $(paper).pdf
 slides: $(slides).html
 
 #phony target for session-info doc
-session: $(session).txt
+session: 
+	bash session.sh
 
 
 $(paper).Rmd: $(rmds)
