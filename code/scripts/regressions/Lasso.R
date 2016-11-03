@@ -41,7 +41,10 @@ lasso_pred = predict(lasso_reg, as.matrix(credit[test_set_indices, 1:11]), s = b
 lasso_tMSE = mean((lasso_pred - credit[test_set_indices, 12])^2) 
 
 # refit model on full data set
-lasso_final = predict(lasso_reg, as.matrix(credit[ , 1:11]), s = "lambda.min")
+lasso_final_reg = glmnet(as.matrix(credit[ ,1:11]), as.matrix(credit[12]), 
+                         intercept = FALSE, standardize = FALSE, lambda = best_lam)
+
+predict(lasso_reg, as.matrix(credit[ , 1:11]), s = "lambda.min")
 
 # save to RData
 save(lasso_reg, best_lam, lasso_tMSE, lasso_final, file = "data/Lasso-Regression.RData")
@@ -50,10 +53,12 @@ library(pander)
 
 # save to textfile
 sink("data/lasso-results.txt")
-cat("\n best lamba:")
+cat("\n Best Lamba:")
 best_lam
 cat("\n Lasso test MSE:")
 lasso_tMSE
+cat("\n Official Coefficients")
+coef(lasso_final_reg)
 sink()
 
 
