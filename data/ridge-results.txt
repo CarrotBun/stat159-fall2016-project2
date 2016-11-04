@@ -2,7 +2,7 @@ Best Lambda:
 [1] 0.01
 
  Test MSE:
-[1] 0.0555935
+[1] 0.0556071
 
  Official Coefficients:
 12 x 1 sparse Matrix of class "dgCMatrix"

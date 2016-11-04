@@ -14,16 +14,16 @@ lasso_reg = cv.glmnet(as.matrix(credit[train_set_indices, 1:11]),
                       standardize = FALSE, 
                       lambda = grid)
 # min lambda
-best_lam = lasso_reg$lambda.min
+lasso_best = lasso_reg$lambda.min
 
 # plot CV errors MSEP
-png("images/lasso-validation.png")
+png("images/reg-plots/lasso-validation.png")
 plot(lasso_reg)
 dev.off()
 
 
 # prediction plot ================================================
-png("images/lasso-prediction-plot.png")
+png("images/reg-plots/lasso-prediction-plot.png")
 plot(predict(lasso_reg, as.matrix(credit[test_set_indices, 1:11]), s = "lambda.min"), type = "l"
      , col = "red",main = "Predicted and Actual Credit Balances", 
      ylab = "Normalized Credit Balance")
@@ -35,26 +35,26 @@ dev.off()
 # ================================================
   
 
-lasso_pred = predict(lasso_reg, as.matrix(credit[test_set_indices, 1:11]), s = best_lam)
+lasso_pred = predict(lasso_reg, as.matrix(credit[test_set_indices, 1:11]), s = lasso_best)
 
 # test MSE
 lasso_tMSE = mean((lasso_pred - credit[test_set_indices, 12])^2) 
 
 # refit model on full data set
-lasso_final_reg = glmnet(as.matrix(credit[ ,1:11]), as.matrix(credit[12]), 
-                         intercept = FALSE, standardize = FALSE, lambda = best_lam)
-
-predict(lasso_reg, as.matrix(credit[ , 1:11]), s = "lambda.min")
+lasso_final_reg= glmnet(as.matrix(credit[ ,1:11]), as.matrix(credit[12]), 
+                         intercept = FALSE, standardize = FALSE, lambda = lasso_best)
+lasso_final = predict(lasso_final_reg,type="coefficients")
+#predict(lasso_reg, as.matrix(credit[ , 1:11]), s = "lambda.min")
 
 # save to RData
-save(lasso_reg, best_lam, lasso_tMSE, lasso_final, file = "data/Lasso-Regression.RData")
+save(lasso_reg, lasso_best, lasso_tMSE, lasso_final, file = "data/Lasso-Regression.RData")
 
 library(pander)
 
 # save to textfile
 sink("data/lasso-results.txt")
 cat("\n Best Lamba:")
-best_lam
+lasso_best
 cat("\n Lasso test MSE:")
 lasso_tMSE
 cat("\n Official Coefficients")
