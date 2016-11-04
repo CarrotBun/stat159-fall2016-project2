@@ -2,18 +2,6 @@
 
 As noted above, we used several regression methods on the dataset Credit.
 
-```{r include = FALSE, echo = FALSE}
-library(xtable)
-
-load("../data/OLS-Regression.RData")
-load("../data/Ridge-Regression.RData")
-load("../data/Lasso-Regression.RData")
-load("../data/PCR-Regression.RData")
-load("../data/PLS-Regression.RData")
-
-load("../data/correlation-matrix.RData")
-```
-
 #### OLS
 
 ```{r results= 'asis', echo =FALSE}
