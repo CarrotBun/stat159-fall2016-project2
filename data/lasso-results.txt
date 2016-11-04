@@ -1,0 +1,19 @@
+
+ Best Lamba:[1] 0.01
+
+ Lasso test MSE:[1] 0.05515175
+
+ Official Coefficients12 x 1 sparse Matrix of class "dgCMatrix"
+                            s0
+(Intercept)         .         
+Income             -0.55166063
+Limit               0.92504680
+Rating              0.36787493
+Cards               0.04499772
+Age                -0.01666003
+Education           .         
+GenderFemale        .         
+StudentYes          0.26681304
+MarriedYes          .         
+EthnicityAsian      .         
+EthnicityCaucasian  .         
