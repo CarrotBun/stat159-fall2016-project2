@@ -47,7 +47,7 @@ pls_final = plsr(as.vector(credit[ ,12]) ~ as.matrix(credit[ ,1:11]),
 # save regressions
 save(pls_reg, bestmodel, pls_tMSE, pls_final, file = "data/PLS-Regression.RData")
 
-sink("data/PLSR-results.txt")
+sink("data/plsr-results.txt")
 cat("\n best model:")
 bestmodel
 cat("\n PLSR test MSE:")
