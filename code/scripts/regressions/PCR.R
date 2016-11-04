@@ -18,9 +18,22 @@ pcr_train <- pcr(Balance ~ ., data=credit, subset = train_set_indices,
 bestmodel = which.min(pcr_train$validation$PRESS)
 
 # Validation plot
-png(filename="images/pcr-validation.png")
+png(filename="images/reg-plots/pcr-validation.png")
 validationplot(pcr_train, val.type = "MSEP")
 dev.off()
+
+###### prediction plot ################################################################### 
+png("images/reg-plots/pcr-prediction-plot.png")
+plot(predict(pcr_reg, x[test_set_indices,], ncomp = bestmodel), 
+     type = "l", col = "red",main = "PCR Predicted and Actual Credit Balances", 
+     ylab = "Normalized Credit Balance")
+
+lines(y.test, col = "black")
+
+legend(0, 3, legend = c("Predicted", "Actual"), fill = c("red", "black"), bty = "n")
+dev.off()
+##########################################################################################
+
 
 # Apply best model to test set
 pcr_pred <- predict(pcr_train, x[test_set_indices,],ncomp=bestmodel)
