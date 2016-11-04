@@ -35,9 +35,6 @@ Data: 	X dimension: 400 11
 Fit method: kernelpls
 Number of components considered: 7
 TRAINING: % variance explained
-                         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
-X                          24.58    32.53    37.84    50.55    60.80    65.92
-as.vector(credit[, 12])    69.67    86.53    94.95    95.46    95.48    95.48
-                         7 comps
-X                          73.20
-as.vector(credit[, 12])    95.48
+         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps
+X          24.58    32.53    37.84    50.55    60.80    65.92    73.20
+Balance    69.67    86.53    94.95    95.46    95.48    95.48    95.48
