@@ -5,9 +5,9 @@ date: "November 5, 2016"
 output: pdf_document
 ---
 ## Abstract  
-A prevalent problem among businesses is the effect of advertising efforts. In the past, newspapers were the main source of information but as technology advanced, TV became the main channel of marketing.  
+A prevalent problem among banking institutions is predicting the behavior of their clients such as paying their bills promptly. In this report, we will explore the relationship between an individual's characteristics and their payment behavior to develop a prediction model. 
 
-The motivation of this report is to analyze the relationship between characteristics of a credit card owner to their monthly leftover credit card balance. The dataset and more information can be found in the book, [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf).   
+The motivation of this report is to develop a prediction model based on the characteristics of a credit card owner. The dataset and more information can be found in the book, [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf).   
 
 
 ```{r include = FALSE, echo = FALSE}

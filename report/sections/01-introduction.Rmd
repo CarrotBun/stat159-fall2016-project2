@@ -1,0 +1,23 @@
+## Introduction  
+The prediction models are built upon the credit data set, which contains:  
+
+####Quantitative Variables:
+* **balance**: average credit card debt for a number of individuals  
+* **age**: age of the individual  
+* **cards**: number of credit cards owned by the individual  
+* **education**: years of education of the individual  
+* **income**: in thousands of dollars  
+* **limit**: credit limit  
+* **rating**: the individual's credit rating  
+  
+####Qualitative Variables:
+* **gender**  
+* **student**
+* **status**: marital status
+* **ethnicity**: Caucasian, African American
+or Asian  
+
+Some questions we would like to explore include:  
+1. What are the distributions of the different categories of the data?  
+2. How well do each model fit the data?  
+3. What is the MSE of each model?  
