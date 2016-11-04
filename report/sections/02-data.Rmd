@@ -20,13 +20,9 @@ and Categorical variables include
 * Married: Yes or No, and
 * Ethnicity: African, American, Asian, or Caucasian
 
-To take a closer look at each variables included in the **Credit** dataset, we looked at the 
-Distributions of quantitative variables are shown below in Figure 1.
+To take a closer look at each variables included in the **Credit** dataset, we looked at the distributions of each quantitative variable (Figures 1 and 2) and the conditional distribution of each categorical variable against Balance (Figure 4).
 
-
-Below (in Figure 2) is the histogram showing the distribution of Balance:  
-
-A scatterplot matrix of all the quantitative variables are show below in Figure 3:  
+As shown through the historgrams, the distribution of Incomes, Limits, Ratings, # of cards, and balances are slightly skewed to the right. A possible explanation for the similar distribution could be that all five factors are highly correlated -- Individuals with higher incomes are more likely to have higher credit limit, better rating, and more credit cards. 
 
 
 
