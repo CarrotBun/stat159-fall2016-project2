@@ -1,0 +1,11 @@
+---
+title: "Advertising Data Regression Fits"
+author: "Elly Wang, Lily Li"
+date: "November 5, 2016"
+output: pdf_document
+---
+## Abstract  
+A prevalent problem among businesses is the effect of advertising efforts. In the past, newspapers were the main source of information but as technology advanced, TV became the main channel of marketing.  
+
+The motivation of this report is to analyze the relationship between characteristics of a credit card owner to their monthly leftover credit card balance. The dataset and more information can be found in the book, [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf). 
+
