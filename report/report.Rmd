@@ -64,8 +64,8 @@ print(tb_OLS, comment= FALSE)
 ```{r results= 'asis', echo =FALSE}
 ridge_final
 #ridge_coef <- as.matrix(ridge_final)
-#tb_ridge <- xtable(ridge_coef, caption = 'Final Coefficents for Ridge Regression')
-#print(tb_ridge, comment= FALSE)
+tb_ridge <- xtable(as.matrix(ridge_final), caption = 'Final Coefficents for Ridge Regression')
+print(tb_ridge, comment= FALSE)
 ```
 
 ```{r results= 'asis', echo =FALSE}
@@ -85,7 +85,8 @@ coef_table <- data.frame(coef(OLS_reg), sapply(c(ridge_final, lasso_final),as.ma
 rownames(coef_table) =  names(coef(OLS_reg))
 colnames(coef_table) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 
-xtable(coef_table)
+tb_all <- xtable(coef_table)
+print(tb_all, comment = FALSE)
 ```
 
 
