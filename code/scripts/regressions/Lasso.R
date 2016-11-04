@@ -52,7 +52,7 @@ save(lasso_reg, best_lam, lasso_tMSE, lasso_final, file = "data/Lasso-Regression
 library(pander)
 
 # save to textfile
-sink("data/Lasso-Results.txt")
+sink("data/lasso-results.txt")
 cat("\n Best Lamba:")
 best_lam
 cat("\n Lasso test MSE:")
