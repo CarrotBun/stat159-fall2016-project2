@@ -61,9 +61,12 @@ tb_OLS <- xtable(OLS_reg, caption = 'Multiple Ordinary Linear Regression (OLS)')
 print(tb_OLS, comment= FALSE)
 ```
 
+```{r echo = FALSE, results = 'hide', message= FALSE}
+#This chunck is here so the later code chuncks work
+ridge_final 
+```
+
 ```{r results= 'asis', echo =FALSE}
-ridge_final
-#ridge_coef <- as.matrix(ridge_final)
 tb_ridge <- xtable(as.matrix(ridge_final), caption = 'Final Coefficents for Ridge Regression')
 print(tb_ridge, comment= FALSE)
 ```
@@ -88,6 +91,17 @@ colnames(coef_table) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 tb_all <- xtable(coef_table)
 print(tb_all, comment = FALSE)
 ```
+
+
+```{r results= 'asis', echo =FALSE}
+MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
+names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
+
+tb_mse <- xtable(t(data.frame(MSE)),digits = 9)
+print(tb_mse, comment = FALSE)
+```
+
+
 
 
 ## Appendix
