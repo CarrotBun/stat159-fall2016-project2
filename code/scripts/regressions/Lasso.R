@@ -17,13 +17,13 @@ lasso_reg = cv.glmnet(as.matrix(credit[train_set_indices, 1:11]),
 best_lam = lasso_reg$lambda.min
 
 # plot CV errors MSEP
-png("images/lasso-validation.png")
+png("images/reg-plots/lasso-validation.png")
 plot(lasso_reg)
 dev.off()
 
 
 # prediction plot ================================================
-png("images/lasso-prediction-plot.png")
+png("images/reg-plots/lasso-prediction-plot.png")
 plot(predict(lasso_reg, as.matrix(credit[test_set_indices, 1:11]), s = "lambda.min"), type = "l"
      , col = "red",main = "Predicted and Actual Credit Balances", 
      ylab = "Normalized Credit Balance")
@@ -52,7 +52,7 @@ save(lasso_reg, best_lam, lasso_tMSE, lasso_final, file = "data/Lasso-Regression
 library(pander)
 
 # save to textfile
-sink("data/lasso-results.txt")
+sink("data/Lasso-Results.txt")
 cat("\n Best Lamba:")
 best_lam
 cat("\n Lasso test MSE:")

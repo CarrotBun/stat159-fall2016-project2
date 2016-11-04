@@ -24,12 +24,12 @@ ridge_cv = cv.glmnet(x[train_set_indices ,],y[train_set_indices], alpha =0,
 bestlam=ridge_cv$lambda.min
 
 # Validation plot
-png(filename="images/ridge-validation.png")
+png(filename="images/reg-plots/ridge-validation.png")
 plot(ridge_cv)
 dev.off()
 
 # prediction plot ================================================
-png("images/ridge-prediction-plot.png")
+png("images/reg-plots/ridge-prediction-plot.png")
 plot(predict(ridge_reg, x[test_set_indices,], s = bestlam), type = "l"
      , col = "red",main = "Predicted and Actual Credit Balances", 
      ylab = "Normalized Credit Balance")
