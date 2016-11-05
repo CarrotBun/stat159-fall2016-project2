@@ -32,9 +32,7 @@ knitr::opts_chunk$set(fig.pos = 'H')
 
   
 
----
-output: pdf_document
----
+
 ## Introduction  
 The prediction models are built upon the credit data set, which contains:  
 
@@ -61,14 +59,13 @@ Some questions we would like to explore include:
 2. How well do each model fit the data?
 3. What is the MSE of each model?
 4. Which model gives the best prediction?
-
   
 
 ## Data
 
 The credit data used in this project includes both categorical and quantitative data.   
 
-To take a closer look at each variables included in the **Credit** dataset, we looked at the distributions of each quantitative variable (Figures 1 and 2) and the conditional distribution of each categorical variable against Balance (Figure 3).
+To take a closer look at each variables included in the **Credit** dataset, we looked at the distributions of each quantitative variable (Figures A1 and A2 in appendix) and the conditional distribution of each categorical variable against Balance (Figure A3 in appendix).
 
 As shown through the historgrams, the distribution of Incomes, Limits, Ratings, # of cards, and balances are slightly skewed to the right. A possible explanation for the similar distribution could be that all five factors are highly correlated -- Individuals with higher incomes are more likely to have higher credit limit and better ratings. 
 
@@ -77,18 +74,16 @@ tb_corr <- xtable(lower, caption = 'Correlation Matrix for Credit Data')
 print(tb_corr, comment= FALSE)
 ```
 
-Examining the correlation matrix and scatterplot matrix (Figure 4), we see that there is an extremely high correlation between Limit and Rating. In addition, the correlations between Income and Limit and Income and Rating are also fairly high. The high correlations could be potentional problems in the OLS regression due to almost collinearity. 
+Examining the correlation matrix (Table 1) and scatterplot matrix (Figure A4 in appendix), we see that there is an extremely high correlation between Limit and Rating. In addition, the correlations between Income and Limit and Income and Rating are also fairly high. The high correlations could be potentional problems in the OLS regression due to almost collinearity. 
 
-In addition to histograms for quantitative variables in credit, we also examined the conditional boxplots of categorical variables against Balance (Figure 3). The boxplots show that the balance is right-skewed for most groups, and with exception of students who have a fairly symmetric distribution for balances. In addition to the distribution, we also note that excluding the students, the averages for all groups in each categorical variable are about the same. For the student variable, we see that the students have much higher average for balance when compared to the non-students, and that makes sense because usually students have little to no income and still have to pay tuition on their own.
+In addition to histograms for quantitative variables in credit, we also examined the conditional boxplots of categorical variables against Balance (Figure A3). The boxplots show that the balance is right-skewed for most groups, and with exception of students who have a fairly symmetric distribution for balances. In addition to the distribution, we also note that excluding the students, the averages for all groups in each categorical variable are about the same. For the student variable, we see that the students have much higher average for balance when compared to the non-students, and that makes sense because usually students have little to no income and still have to pay tuition on their own.
 
 
 
----
-output: pdf_document
----
+
 ## Methods  
 
-###Standardization  
+### Standardization  
 The dataset includes categories measured in different scales. To prevent any biased weighting, we want to standardize the dataset before building any models upon it.  
 
 First, we create dummy variables for the qualitative variables discussed in the introduction. Next, we want to standardize the absolute quantitites to relative quantities (mean centering). This means that each variable will have mean zero, and standard deviation one. One reason to standardize variables is to have comparable scales. When you perform a regression analysis, the value of the computed coefficients will depend on the measurement scale of the associated predictors.  
@@ -102,7 +97,7 @@ Based on the Gauss-Markov theorem, OLS is the best linear unbiased estimator. Ho
 $$Balance = \beta_1 Income + \beta_2 Limit + \beta_3 Rating + \beta_4 Cards + \beta_5 Age ... + \beta_11EthnicityCaucasian$$  
 
 ####*Ridge Regression (RR)*  
-RR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||^2_2 < c^2$.  
+Ridge Regression is a variation of the minimization in OLS Regression but with a constraint of $||\beta||^2_2 < c^2$.  
 
 In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||^2_2$ 
 
@@ -111,7 +106,7 @@ A difference in behavior of RR is that as $\lambda$ increases, more weight is gi
 The main advantage of RR is that it takes multicollinearity into account and does automatics parameter selection. 
 
 ####*Lasso Regression (LR)*  
-LR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||_1 < c$. With c, the constraint shape becomes a diamond and any pairs of $\beta$ will likely contain zeros. Unlike RR, there is no explicit form of $\beta$.
+Lasso Regression is a variation of the minimization in OLS Regression but with a constraint of $||\beta||_1 < c$. With c, the constraint shape becomes a diamond and any pairs of $\beta$ will likely contain zeros. Unlike RR, there is no explicit form of $\beta$.
 
 In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||_1$  
 
@@ -121,7 +116,7 @@ The main advantage of LR is that it performs both parameter shrinkage through fe
 
 
 ####*Principal Component Regression (PCR)*
-PCR is based on principal component analysis. The goal of this method is to reduce the dimensions (created by the set of data points in n-dimensional space).  
+Principal Component Regression is based on principal component analysis. The goal of this method is to reduce the dimensions (created by the set of data points in n-dimensional space).  
 
 To do so, we want define a direction, the first principal component, that maximizes the the variability in the data set and set the second principal component perpendicular to this first principal component. As a result, each data point's coordinates will change to this new coordinate system.  
 
@@ -130,7 +125,7 @@ Having dimensions with the greatest variance will maximize preservation of dista
 ![A visual representation of PCA with reduction from 3 dimensions to 2 dimensions, *NLPCA*](http://www.nlpca.org/fig_pca_principal_component_analysis.png)
 
 ####*Partial Least Squares Regression (PLSR)*  
-PLSR, similar to PCR, is also a dimensionality reduction method. While PCR finds hyperplanes of maximum variance between the predictors and responses, PLSR projects the predicted variables and the observable variables into a new space.   
+Partial Least Squares Regression, similar to PCR, is also a dimensionality reduction method. While PCR finds hyperplanes of maximum variance between the predictors and responses, PLSR projects the predicted variables and the observable variables into a new space.   
 
 The main advantage is that PLSR uses the annotated label to maximize inter-class variance. It takes into account of the classes and tries to reduce the dimension while maximizing the separation of classes.  
 
@@ -156,7 +151,7 @@ ridge_final
 
 To conduct the Ordinary Least Squares (OLS) regression, we first ran the regression using `lm()` on the training set. With the obtained coefficients, we predicted the balance for the test set and compared it with the actual balance data from the test set.
 
-The table below shows the OLS coefficients we obtained from running OLS on the entire set of data (trained and test set).
+Table 2 shows the OLS coefficients we obtained from running OLS on the entire set of data (trained and test set).
 
 ```{r results= 'asis', echo =FALSE}
 tb_OLS <- xtable(OLS_final, caption = 'Multiple Ordinary Linear Regression (OLS)')
@@ -165,12 +160,11 @@ print(tb_OLS, comment= FALSE)
 
 #### Ridge and Lasso Regressions
 
-To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. From the validation plots shown below, 
+To run Ridge and Lasso Regressions in R, we used the package `glmnet`. 
 
+In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. The validation plots shown in Figure A5 in appendix shows the Mean-Squared Errors plotted against $log(\lambda)$. 
 
-
-Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE. Figures below show the prediction plots and indicates how close the predictions were to the actual values.
-
+Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE. The top graphs in Figure A6 in appendix show the prediction plots and indicates how close the predictions were to the actual values.
 
 Lastly, we ran the regressions on the entire credit data using the best lambda values and got the final coefficient values show in the combined table in Table 3 under results. 
 
@@ -178,9 +172,9 @@ Lastly, we ran the regressions on the entire credit data using the best lambda v
 
 To perform Principal Components Regression (PCR) and the Partial Least Squares Regression (PLSR) in R, we used the package `pls`. 
 
-To begin, we ran PCR and PLSR on our train data set with cross validation. The functions to do so are `pcr()` and `pls()` for PCR and PLSR, respectively. Then, with the cross validation object, we used `which.min()` function to find the component that has the least predicted residual error sum of squares (PRESS) from the cross-validation, and marked that as the best model. The best models we found for PCR and PLSR are `r pcr_best` and `r pls_best`, respectively.
+To begin, we ran PCR and PLSR on our train data set with cross validation. The functions to do so are `pcr()` and `pls()` for PCR and PLSR, respectively. Then, with the cross validation object, we used `which.min()` function to find the component that has the least predicted residual error sum of squares (PRESS) from the cross-validation, and marked that as the best model. The best models we found for PCR and PLSR are `r pcr_best` and `r pls_best`, respectively. The validation plots for PCR adn PLSR can be found in Figure A5 of appendix, the dotted line marks the best component chosen by the minimization of PRESS. 
 
-Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. Figures in appendix show the prediction plots and indicates how close the predictions were to the actual values.
+Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. Figure A6 in appendix show the prediction plots and indicates how close the predictions were to the actual values.
 
 Lastly, we ran the regressions on the entire credit data to get the final coefficients for each of the regression models (as shown below in Table 3).  
 
@@ -208,6 +202,9 @@ print(tb_all, comment = FALSE)
 ```
 Comparing them side by side, we noticed that most coeffiicents are about the same.  In particular, we noticed that the coefficient estimates for OLS and PCR came out to the be the same. 
 
+Below, in Figure 4, we see a visual comparison of each coefficient estimates computed from the different regressions. 
+
+##### Figure 4: Barplot represenation for comparison of coefficient estimates
 ```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
 variable <- names(coef(OLS_final))
 c_estimates <- cbind(variable, coef_table)[-1,]
@@ -222,6 +219,8 @@ ggplot(c_estimates_tidy) +
 		axis.ticks.x=element_blank())
 ```
 
+From the facetted barplot, we see that the esimates for coefficient on `StudentYes`, `Income`, Gender, and Ethinicity variables vary by a bit, while the coefficients on the other variables vary greatly across regressions. The great variation of estimates of coefficients on some of the variables most likely due to the variability of the data itself and how each regression treats the variation.
+
 ```{r results= 'asis', echo =FALSE}
 MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
 names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
@@ -229,23 +228,26 @@ names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 tb_mse <- xtable(t(data.frame(MSE)),digits = 9, caption = "Mean Squared Errors for all regression on test set")
 print(tb_mse, comment = FALSE)
 ```
-Looking at the MSE of the regressions, we find that the minimum MSE is `min(MSE)`, corresponding to Lasso Regression. It's makes sense because Lasso sparsifies the regressors and takes multicollinearity into account.  
+Looking at the MSE of the regressions, we find that the minimum MSE is `r min(MSE)`, corresponding to Lasso Regression. It's makes sense because Lasso sparsifies the regressors and takes multicollinearity into account.  
 
-The coefficients for Lasso seem to take out Education, GenderFemale indicator, Martial Status indicator, Asian Ethnicity indicator, and Caucasion Ethnicity indicator. The highest coefficient is `rownames(coef_table)[which.max(coef_table[ ,"Lasso"])]` at `max(coef_table[ ,"Lasso"])`, meaning there is strong positive association between credit limit and credit debt. The lowest coefficient is `rownames(coef_table)[which.min(coef_table[ ,"Lasso"])]` at `min(coef_table[ ,"Lasso"])`, meaning this is the strongest negative correlation. An increase in income is associated with a decrease in credit card debt.  
+The coefficients for Lasso seem to take out Education, GenderFemale indicator, Martial Status indicator, Asian Ethnicity indicator, and Caucasion Ethnicity indicator. The highest coefficient is `r rownames(coef_table)[which.max(coef_table[ ,"Lasso"])]` at `r max(coef_table[ ,"Lasso"])`, meaning there is strong positive association between credit limit and credit debt. The lowest coefficient is `r rownames(coef_table)[which.min(coef_table[ ,"Lasso"])]` at `r min(coef_table[ ,"Lasso"])`, meaning this is the strongest negative correlation. An increase in income is associated with a decrease in credit card debt.  
 
 Being a student, having more cards, and having a higher rating, are all associated with a higher credit card debt while an increase in age is associated with a decrease in credit card debt. However, age and number of cards owned by an individual are relatively small in magnitude so these estimates should be considered with caution.  
 
+   
 
 
 
 
-##Conclusion  
-After comparing the performance of the 5 different models we built, Lasso seems to perform the best with the lowest MSE, having the best fit for the data. Using this model, it was found that characteristics such as income, credit limit, credit rating, number of cards held by the individual, age, and student status have the best prediciton for credit debt. \pagebreak 
+## Conclusion  
+
+After comparing the performance of the 5 different models we built, Lasso seems to perform the best with the lowest MSE, having the best fit for the data. Using this model, it was found that characteristics such as income, credit limit, credit rating, number of cards held by the individual, age, and student status have the best prediciton for credit debt. 
+\pagebreak 
 
 
 ## Appendix
 
-##### Figure 1: Histograms for quantitative variables in Credit 
+##### Figure A1: Histograms for quantitative variables in Credit 
 \noindent
 \includegraphics[width=0.5\textwidth]{../images/histogram-Income.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/histogram-Limit.png}\
@@ -256,12 +258,14 @@ After comparing the performance of the 5 different models we built, Lasso seems 
 
 \pagebreak 
 
-##### Figure 2: Distribution of Balance
+##### Figure A2: Distribution of Balance
 ![Histogram for Balance](../images/histogram-Balance.png)
+
+*Note: this figure is referred to in the text as Figure A2, not Figure 4*
 
 \pagebreak 
 
-##### Figure 3: Conditional boxplots for categorical variables in Credit and Balance
+##### Figure A3: Conditional boxplots for categorical variables in Credit and Balance
 
 \noindent
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Gender.png}\hspace{0.1\textwidth}
@@ -271,13 +275,14 @@ After comparing the performance of the 5 different models we built, Lasso seems 
 
 \pagebreak 
 
-##### Figure 4: Scatterplot Matrix for all quantiative variables
+##### Figure A4: Scatterplot Matrix for all quantiative variables
 ![Scatterplot Matrix](../images/scatterplot-matrix.png)
 
+*Note: this figure is referred to in the text as Figure A4, not Figure 5*
 
 \pagebreak 
 
-##### Figure 5: Validation Plots
+##### Figure A5: Validation Plots
 From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
 
 \noindent
@@ -290,7 +295,7 @@ From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
 
 \pagebreak 
 
-##### Figure 6: Prediction Plots
+##### Figure A6: Prediction Plots
 From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
 
 \noindent

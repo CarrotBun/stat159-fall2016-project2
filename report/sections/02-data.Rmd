@@ -3,7 +3,7 @@
 
 The credit data used in this project includes both categorical and quantitative data.   
 
-To take a closer look at each variables included in the **Credit** dataset, we looked at the distributions of each quantitative variable (Figures 1 and 2) and the conditional distribution of each categorical variable against Balance (Figure 3).
+To take a closer look at each variables included in the **Credit** dataset, we looked at the distributions of each quantitative variable (Figures A1 and A2 in appendix) and the conditional distribution of each categorical variable against Balance (Figure A3 in appendix).
 
 As shown through the historgrams, the distribution of Incomes, Limits, Ratings, # of cards, and balances are slightly skewed to the right. A possible explanation for the similar distribution could be that all five factors are highly correlated -- Individuals with higher incomes are more likely to have higher credit limit and better ratings. 
 
@@ -12,9 +12,9 @@ tb_corr <- xtable(lower, caption = 'Correlation Matrix for Credit Data')
 print(tb_corr, comment= FALSE)
 ```
 
-Examining the correlation matrix and scatterplot matrix (Figure 4), we see that there is an extremely high correlation between Limit and Rating. In addition, the correlations between Income and Limit and Income and Rating are also fairly high. The high correlations could be potentional problems in the OLS regression due to almost collinearity. 
+Examining the correlation matrix (Table 1) and scatterplot matrix (Figure A4 in appendix), we see that there is an extremely high correlation between Limit and Rating. In addition, the correlations between Income and Limit and Income and Rating are also fairly high. The high correlations could be potentional problems in the OLS regression due to almost collinearity. 
 
-In addition to histograms for quantitative variables in credit, we also examined the conditional boxplots of categorical variables against Balance (Figure 3). The boxplots show that the balance is right-skewed for most groups, and with exception of students who have a fairly symmetric distribution for balances. In addition to the distribution, we also note that excluding the students, the averages for all groups in each categorical variable are about the same. For the student variable, we see that the students have much higher average for balance when compared to the non-students, and that makes sense because usually students have little to no income and still have to pay tuition on their own.
+In addition to histograms for quantitative variables in credit, we also examined the conditional boxplots of categorical variables against Balance (Figure A3). The boxplots show that the balance is right-skewed for most groups, and with exception of students who have a fairly symmetric distribution for balances. In addition to the distribution, we also note that excluding the students, the averages for all groups in each categorical variable are about the same. For the student variable, we see that the students have much higher average for balance when compared to the non-students, and that makes sense because usually students have little to no income and still have to pay tuition on their own.
 
 
 

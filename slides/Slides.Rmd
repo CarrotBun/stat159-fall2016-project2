@@ -168,3 +168,6 @@ Findings:
 ![Prediction for Lasso](../images/reg-plots/lasso-prediction-plot.png)
 
 ## Conclusion 
+
+- Although OLS is the best linear unbiased estimator, lasso regression yielded the least MSE in the credit data set.
+- Using this model, it was found that characteristics such as income, credit limit, credit rating, number of cards held by the individual, age, and student status have the best prediciton for credit debt. 

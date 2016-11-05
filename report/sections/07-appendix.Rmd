@@ -3,7 +3,7 @@
 
 ## Appendix
 
-##### Figure 1: Histograms for quantitative variables in Credit 
+##### Figure A1: Histograms for quantitative variables in Credit 
 \noindent
 \includegraphics[width=0.5\textwidth]{../images/histogram-Income.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/histogram-Limit.png}\
@@ -14,12 +14,14 @@
 
 \pagebreak 
 
-##### Figure 2: Distribution of Balance
+##### Figure A2: Distribution of Balance
 ![Histogram for Balance](../images/histogram-Balance.png)
+
+*Note: this figure is referred to in the text as Figure A2, not Figure 4*
 
 \pagebreak 
 
-##### Figure 3: Conditional boxplots for categorical variables in Credit and Balance
+##### Figure A3: Conditional boxplots for categorical variables in Credit and Balance
 
 \noindent
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Gender.png}\hspace{0.1\textwidth}
@@ -29,13 +31,14 @@
 
 \pagebreak 
 
-##### Figure 4: Scatterplot Matrix for all quantiative variables
+##### Figure A4: Scatterplot Matrix for all quantiative variables
 ![Scatterplot Matrix](../images/scatterplot-matrix.png)
 
+*Note: this figure is referred to in the text as Figure A4, not Figure 5*
 
 \pagebreak 
 
-##### Figure 5: Validation Plots
+##### Figure A5: Validation Plots
 From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
 
 \noindent
@@ -48,7 +51,7 @@ From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
 
 \pagebreak 
 
-##### Figure 6: Prediction Plots
+##### Figure A6: Prediction Plots
 From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
 
 \noindent

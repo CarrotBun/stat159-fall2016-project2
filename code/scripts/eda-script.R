@@ -34,37 +34,48 @@ aov(Balance~Gender + Student + Married + Ethnicity, credit)
 sink()
 
 # Create plots
-ggplot(credit) + geom_histogram(aes(Income),binwidth = 10)
+ggplot(credit) + geom_histogram(aes(Income),binwidth = 10) + 
+	labs(title = "Distribution of Income")
 ggsave("images/histogram-Income.png")
 
-ggplot(credit) + geom_histogram(aes(Limit),binwidth = 1000)
+ggplot(credit) + geom_histogram(aes(Limit),binwidth = 1000)+ 
+	labs(title = "Distribution of Limit")
 ggsave("images/histogram-Limit.png")
 
-ggplot(credit) + geom_histogram(aes(Rating),binwidth = 50)
+ggplot(credit) + geom_histogram(aes(Rating),binwidth = 50)+ 
+	labs(title = "Distribution of Rating")
 ggsave("images/histogram-Rating.png")
 
-ggplot(credit) + geom_histogram(aes(Cards),binwidth = 1)
+ggplot(credit) + geom_histogram(aes(Cards),binwidth = 1)+ 
+	labs(title = "Distribution of Cards")
 ggsave("images/histogram-Cards.png")
 
-ggplot(credit) + geom_histogram(aes(Age),binwidth = 5)
+ggplot(credit) + geom_histogram(aes(Age),binwidth = 5)+ 
+	labs(title = "Distribution of Age")
 ggsave("images/histogram-Age.png")
 
-ggplot(credit) + geom_histogram(aes(Education),binwidth=2)
+ggplot(credit) + geom_histogram(aes(Education),binwidth=2)+ 
+	labs(title = "Distribution of Education")
 ggsave("images/histogram-Education.png")
 
-ggplot(credit) + geom_histogram(aes(Balance),binwidth = 100)
+ggplot(credit) + geom_histogram(aes(Balance),binwidth = 100)+ 
+	labs(title = "Distribution of Balance")
 ggsave("images/histogram-Balance.png")
 
-ggplot(credit, aes(x= Gender, y = Balance))+ geom_boxplot()
+ggplot(credit, aes(x= Gender, y = Balance))+ geom_boxplot()+ 
+	labs(title = "Balance vs. Gender")
 ggsave("images/boxplot-Gender.png")
 
-ggplot(credit, aes(x= Married, y = Balance))+ geom_boxplot()
+ggplot(credit, aes(x= Married, y = Balance))+ geom_boxplot()+ 
+	labs(title = "Balance vs. Married")
 ggsave("images/boxplot-Married.png")
 
-ggplot(credit, aes(x= Student, y = Balance))+ geom_boxplot()
+ggplot(credit, aes(x= Student, y = Balance))+ geom_boxplot()+ 
+	labs(title = "Balance vs. Student")
 ggsave("images/boxplot-Student.png")
 
-ggplot(credit, aes(x= Ethnicity, y = Balance))+ geom_boxplot()
+ggplot(credit, aes(x= Ethnicity, y = Balance))+ geom_boxplot()+ 
+	labs(title = "Balance vs. Ethnicity")
 ggsave("images/boxplot-Ethnicity.png")
 
 png(filename="images/scatterplot-matrix.png")
