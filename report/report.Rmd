@@ -12,6 +12,8 @@ The motivation of this report is to develop a prediction model based on the char
 
 ```{r include = FALSE, echo = FALSE}
 library(xtable)
+library(tidyr)
+library(ggplot2)
 
 load("../data/OLS-Regression.RData")
 load("../data/Ridge-Regression.RData")
@@ -162,9 +164,12 @@ print(tb_OLS, comment= FALSE)
 
 #### Ridge and Lasso Regressions
 
-To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. 
+To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. From the validation plots shown below, 
 
-Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE.
+
+
+Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE. Figures below show the prediction plots and indicates how close the predictions were to the actual values.
+
 
 Lastly, we ran the regressions on the entire credit data using the best lambda values and got the final coefficient values show in the combined table in Table 3 under results. 
 
@@ -174,7 +179,7 @@ To perform Principal Components Regression (PCR) and the Partial Least Squares R
 
 To begin, we ran PCR and PLSR on our train data set with cross validation. The functions to do so are `pcr()` and `pls()` for PCR and PLSR, respectively. Then, with the cross validation object, we used `which.min()` function to find the component that has the least predicted residual error sum of squares (PRESS) from the cross-validation, and marked that as the best model. The best models we found for PCR and PLSR are `r pcr_best` and `r pls_best`, respectively.
 
-Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. 
+Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. Figures in appendix show the prediction plots and indicates how close the predictions were to the actual values.
 
 Lastly, we ran the regressions on the entire credit data to get the final coefficients for each of the regression models (as shown below in Table 3).  
 
@@ -211,8 +216,6 @@ print(tb_mse, comment = FALSE)
 ```
 
 ```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
-library(tidyr)
-library(ggplot2)
 variable <- names(coef(OLS_final))
 c_estimates <- cbind(variable, coef_table)[-1,]
 c_estimates_tidy <- gather(c_estimates, key = reg, value= coef_est, -variable)
@@ -225,14 +228,6 @@ ggplot(c_estimates_tidy) +
 	theme(axis.text.x=element_blank(),
 		axis.ticks.x=element_blank())
 
-
-ggplot(c_estimates_tidy) + 
-	geom_bar(aes(x = variable, y = coef_est, fill = reg), stat = "identity")+ 
-	facet_wrap(~reg, scales= 'free') + 
-	labs(title = "Estimated Coefficients Faceted by Variable", y = "Estimated Coefficient", x = "Regression") +
-	guides(fill=guide_legend(title="Regression"))+
-	theme(axis.text.x=element_blank(),
-		axis.ticks.x=element_blank())
 ```
 
 
@@ -254,7 +249,7 @@ ggplot(c_estimates_tidy) +
 \pagebreak 
 
 ##### Figure 2: Distribution of Balance
-![Fig 2: Balance](../images/histogram-Balance.png)
+![Histogram for Balance](../images/histogram-Balance.png)
 
 \pagebreak 
 
@@ -269,4 +264,29 @@ ggplot(c_estimates_tidy) +
 \pagebreak 
 
 ##### Figure 4: Scatterplot Matrix for all quantiative variables
-![Fig 4: Scatterplot Matrix](../images/scatterplot-matrix.png)
+![Scatterplot Matrix](../images/scatterplot-matrix.png)
+
+
+\pagebreak 
+
+##### Figure 5: Validation Plots
+From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
+
+\noindent
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/ridge-validation.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/lasso-validation.png}\
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/pcr-validation.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/plsr-validation.png}\par
+
+
+
+\pagebreak 
+
+##### Figure 6: Prediction Plots
+From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
+
+\noindent
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/ridge-prediction-plot.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/lasso-prediction-plot.png}\
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/pcr-prediction-plot.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/plsr-prediction-plot.png}\par

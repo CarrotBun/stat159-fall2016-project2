@@ -15,7 +15,7 @@
 \pagebreak 
 
 ##### Figure 2: Distribution of Balance
-![Fig 2: Balance](../images/histogram-Balance.png)
+![Histogram for Balance](../images/histogram-Balance.png)
 
 \pagebreak 
 
@@ -30,4 +30,29 @@
 \pagebreak 
 
 ##### Figure 4: Scatterplot Matrix for all quantiative variables
-![Fig 4: Scatterplot Matrix](../images/scatterplot-matrix.png)
+![Scatterplot Matrix](../images/scatterplot-matrix.png)
+
+
+\pagebreak 
+
+##### Figure 5: Validation Plots
+From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
+
+\noindent
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/ridge-validation.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/lasso-validation.png}\
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/pcr-validation.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/plsr-validation.png}\par
+
+
+
+\pagebreak 
+
+##### Figure 6: Prediction Plots
+From Left to Right: (Top) Ridge, Lasso (Bottom) PCR, PLSR
+
+\noindent
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/ridge-prediction-plot.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/lasso-prediction-plot.png}\
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/pcr-prediction-plot.png}\hspace{0.1\textwidth}
+\includegraphics[width=0.5\textwidth]{../images/reg-plots/plsr-prediction-plot.png}\par

@@ -26,8 +26,6 @@ print(tb_mse, comment = FALSE)
 ```
 
 ```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
-library(tidyr)
-library(ggplot2)
 variable <- names(coef(OLS_final))
 c_estimates <- cbind(variable, coef_table)[-1,]
 c_estimates_tidy <- gather(c_estimates, key = reg, value= coef_est, -variable)
