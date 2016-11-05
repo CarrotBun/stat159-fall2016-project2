@@ -108,6 +108,9 @@ data/PLS-results.txt:$(script)/$(reg)/PLSR.R $(script)/Train-Test.R $(sdata)
 $(session).txt: $(script)/$(session)-script.R
 	Rscript $<
 
+$(slides).html: $(slides).Rmd
+	Rscript -e "library(rmarkdown); render('$(slides).Rmd','ioslides_presentation')"
+
 # remove report
 clean:
 	rm -f report/*.pdf

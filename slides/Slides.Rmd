@@ -9,15 +9,36 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+```{r include = FALSE, echo = FALSE}
+library(xtable)
+library(tidyr)
+library(ggplot2)
+
+load("../data/OLS-Regression.RData")
+load("../data/Ridge-Regression.RData")
+load("../data/Lasso-Regression.RData")
+load("../data/PCR-Regression.RData")
+load("../data/PLS-Regression.RData")
+
+load("../data/correlation-matrix.RData")
+```
+
 ## Credit Card Debt
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Introduction
+Credit data set:
+- Quantitative variables: balance, age, cards, education, income, limit, and rating
+- Qualitative variables: gender, student, married, and ethnicity
+
 
 ## Data
+![Scatterplot Matrix](../images/scatterplot-matrix.png)
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+## Data
+```{r, results = "asis"}
+tb_corr <- xtable(lower, caption = 'Correlation Matrix for Credit Data')
+print(tb_corr, comment= FALSE)
+```
 
 ## Models
 
