@@ -1,0 +1,25 @@
+## Results
+
+
+```{r results= 'asis', echo =FALSE}
+pcr_indice = ((pcr_best-1)*11 +1):(pcr_best*11)
+pls_indice = ((pls_best-1)*11 +1):(pls_best*11)
+coef_table <- data.frame(coef(OLS_final), sapply(c(ridge_final, lasso_final),as.matrix),
+	c(NA, coef(pcr_final)[pcr_indice]),
+	c(NA, coef(pls_final)[pls_indice]))
+
+rownames(coef_table) =  names(coef(OLS_final))
+colnames(coef_table) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
+
+tb_all <- xtable(coef_table)
+print(tb_all, comment = FALSE)
+```
+
+
+```{r results= 'asis', echo =FALSE}
+MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
+names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
+
+tb_mse <- xtable(t(data.frame(MSE)),digits = 9)
+print(tb_mse, comment = FALSE)
+```

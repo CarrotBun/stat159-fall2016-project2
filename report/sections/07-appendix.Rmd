@@ -1,3 +1,6 @@
+\pagebreak 
+
+
 ## Appendix
 
 ##### Figure 1: Histograms for quantitative variables in Credit 
@@ -9,17 +12,22 @@
 \includegraphics[width=0.5\textwidth]{../images/histogram-Age.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/histogram-Education.png}\par
 
+\pagebreak 
+
 ##### Figure 2: Distribution of Balance
 ![Fig 2: Balance](../images/histogram-Balance.png)
 
-##### Figure 3: Scatterplot Matrix for all quantiative variables
-![Fig 3: Scatterplot Matrix](../images/scatterplot-matrix.png)
+\pagebreak 
 
-
-##### Figure 4: Conditional boxplots for categorical variables in Credit and Balance
+##### Figure 3: Conditional boxplots for categorical variables in Credit and Balance
 
 \noindent
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Gender.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Student.png}\
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Married.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Ethnicity.png}\par
+
+\pagebreak 
+
+##### Figure 4: Scatterplot Matrix for all quantiative variables
+![Fig 4: Scatterplot Matrix](../images/scatterplot-matrix.png)
