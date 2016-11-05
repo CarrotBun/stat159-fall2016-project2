@@ -7,10 +7,7 @@ This project's goal is to predict the average balance that the customer has rema
 The motivation for this is to see if factors such as income, credit limit, rating, cards, age, gender, student status, marital status, and ethnicity would affect and predict credit balance. 
 
 ##Installation  
-Provide code examples and explanations of how to get the project.
-
-##Tests  
-Describe and show how to run the tests with code examples.
+Access the project by making sure you have the information in session information (software, versions, etc.) and through this repository. The raw data can be found at 
 
 ##Contributors  
 Name: Lily Li  
