@@ -56,3 +56,5 @@ The main advantage is that PLSR uses the annotated label to maximize inter-class
 Because we have limited amount of observations to build and test the model and we want to prevent bias, we will build and test the model using different subsets of the whole data set.  
 
 We built train sets of 300 out of the total 400 observations and test sets of the remaining 100 by random sampling (without replacement). We repeated this process 10 times for a 10 fold cross validation when we ran the regressions. 
+  
+  

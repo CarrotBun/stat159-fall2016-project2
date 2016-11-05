@@ -5,7 +5,7 @@ date: "November 5, 2016"
 output: pdf_document
 ---
 ## Abstract  
-A prevalent problem among banking institutions is predicting the behavior of their clients such as paying their bills promptly. In this report, we will explore the relationship between an individual's characteristics and their payment behavior to develop a prediction model. 
+A prevalent problem among banking institutions is predicting the behavior of their clients such as paying their bills promptly. In this report, we will explore the relationship between an individual's characteristics and their payment behavior to develop a prediction model.  
 
 The motivation of this report is to develop a prediction model based on the characteristics of a credit card owner. The dataset and more information can be found in the book, [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf).   
 
@@ -21,4 +21,5 @@ load("../data/PLS-Regression.RData")
 
 load("../data/correlation-matrix.RData")
 ```
+  
 
