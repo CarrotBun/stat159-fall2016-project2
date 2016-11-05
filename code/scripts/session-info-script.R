@@ -4,6 +4,8 @@ library(glmnet)
 library(pls)
 library(rmarkdown)
 library(pander)
+library(tidyr)
+
 
 sink("../../session-info.txt", append = TRUE)
 cat("Session Information\n\n")

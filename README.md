@@ -26,13 +26,14 @@ Access the project by making sure you have the information in session informatio
 3. To test the functions written in eda-functions and regression-functions. R, run `make tests` in command line  
 4. To produce preliminary summary, correlation matrix, and histograms on the dataset, use `make eda`. Outputs/results are located in eda-output.txt and correlation-matrix.RData in data folder. Histograms and boxplots are outputted to images folder.  
 5. To run regressions on the data and save relevant objects to RData, run `make regressions`. Note: this command will automatically run all the regressions used in this project(OLS, Ridge, Lasso, PCR, and PLSR)  
-6. To run specific regression, use `make (regression name)`. Possible regressions are ols, ridge, lasso, pcr, and plsr. For example, if needed to run OLS regression, run `make ols`. 
-7. To generate the final report, given that all previous steps worked and narrative is written in report.Rmd, run `make report`
-8. To generate the presentation slides, given that all previous steps worked and narrative is written in slide.Rmd, run `make slides`
+6. To run specific regression, use `make (regression name)`. Possible regressions are ols, ridge, lasso, pcr, and plsr. For example, if needed to run OLS regression, run `make ols`.   
+7. To generate the final report, given that all previous steps worked and narrative is written in report.Rmd, run `make report`  
+8. To generate the presentation slides, given that all previous steps worked and narrative is written in slide.Rmd, run `make slides`  
 9. To see session details, run `make session`. session-info.txt file located in the home directory will be produced, and it will contain information regarding Make version, pandoc version, Git version, R version and all relevant libraries used in this project
-8. Given that all scripts and data are located in correct directory, run `make all` will automatically create the final report in pdf, slides in html, and all other relevant graphs and data objects in their respective folders. 
-9. To remove the final report file from report folder, use `make clean`
+10. Given that all scripts and data are located in correct directory, run `make all` will automatically create the final report in pdf, slides in html, and all other relevant graphs and data objects in their respective folders.   
+11 . To remove the final report file from report folder, use `make clean`
 
+Note: All the scripts in this project that involves randomization used `set.seed(159)` to assure reproducibility of the results. 
 
 ## Contributors  
 Name: Lily Li  

@@ -57,15 +57,15 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  base     
 
 other attached packages:
-[1] pander_0.6.0  rmarkdown_1.0 pls_2.5-0     glmnet_2.0-5  foreach_1.4.3
-[6] Matrix_1.2-6  xtable_1.8-2  ggplot2_2.1.0
+[1] tidyr_0.5.1   pander_0.6.0  rmarkdown_1.0 pls_2.5-0     glmnet_2.0-5 
+[6] foreach_1.4.3 Matrix_1.2-6  xtable_1.8-2  ggplot2_2.1.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_0.12.6      lattice_0.20-33  codetools_0.2-14 digest_0.6.9    
- [5] grid_3.3.1       plyr_1.8.4       gtable_0.2.0     magrittr_1.5    
- [9] evaluate_0.9     scales_0.4.0     stringi_1.1.1    tools_3.3.1     
-[13] iterators_1.0.8  stringr_1.0.0    munsell_0.4.3    colorspace_1.2-6
-[17] htmltools_0.3.5  methods_3.3.1   
+ [1] Rcpp_0.12.6      lattice_0.20-33  codetools_0.2-14 assertthat_0.1  
+ [5] digest_0.6.9     grid_3.3.1       plyr_1.8.4       gtable_0.2.0    
+ [9] magrittr_1.5     evaluate_0.9     scales_0.4.0     stringi_1.1.1   
+[13] tools_3.3.1      iterators_1.0.8  stringr_1.0.0    munsell_0.4.3   
+[17] colorspace_1.2-6 htmltools_0.3.5  tibble_1.1       methods_3.3.1   
  setting  value                       
  version  R version 3.3.1 (2016-06-21)
  system   x86_64, darwin13.4.0        
@@ -73,9 +73,10 @@ loaded via a namespace (and not attached):
  language (EN)                        
  collate  en_US.UTF-8                 
  tz       America/Los_Angeles         
- date     2016-11-03                  
+ date     2016-11-04                  
 
  package    * version date       source        
+ assertthat   0.1     2013-12-06 cran (@0.1)   
  codetools    0.2-14  2015-07-15 CRAN (R 3.3.1)
  colorspace   1.2-6   2015-03-11 cran (@1.2-6) 
  devtools     1.12.0  2016-06-24 CRAN (R 3.3.0)
@@ -100,5 +101,7 @@ loaded via a namespace (and not attached):
  scales       0.4.0   2016-02-26 cran (@0.4.0) 
  stringi      1.1.1   2016-05-27 cran (@1.1.1) 
  stringr      1.0.0   2015-04-30 cran (@1.0.0) 
+ tibble       1.1     2016-07-04 cran (@1.1)   
+ tidyr      * 0.5.1   2016-06-14 cran (@0.5.1) 
  withr        1.0.2   2016-06-20 CRAN (R 3.3.0)
  xtable     * 1.8-2   2016-02-05 CRAN (R 3.3.0)
