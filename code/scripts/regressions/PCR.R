@@ -19,7 +19,8 @@ pcr_best = which.min(pcr_train$validation$PRESS)
 
 # Validation plot
 png(filename="images/reg-plots/pcr-validation.png")
-validationplot(pcr_train, val.type = "MSEP")
+validationplot(pcr_train, val.type = "MSEP", main = "PCR Cross Validated Error")
+abline(v = pcr_best, lty = 2)
 dev.off()
 
 ###### prediction plot ################################################################### 
