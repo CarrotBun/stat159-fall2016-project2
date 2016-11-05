@@ -1,0 +1,2 @@
+##Conclusion  
+After comparing the performance of the 5 different models we built, Lasso seems to perform the best with the lowest MSE, having the best fit for the data. Using this model, it was found that characteristics such as income, credit limit, credit rating, number of cards held by the individual, age, and student status have the best prediciton for credit debt. 
