@@ -24,7 +24,7 @@ To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order 
 
 Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE.
 
-Lastly, we ran the regressions on the entire credit data using the best lambda values and got the final coefficient values show in the combined table in Figure # under results. 
+Lastly, we ran the regressions on the entire credit data using the best lambda values and got the final coefficient values show in the combined table in Table 3 under results. 
 
 #### Principal Components Regression and Partial Least Squares Regression
 
@@ -34,7 +34,7 @@ To begin, we ran PCR and PLSR on our train data set with cross validation. The f
 
 Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. 
 
-Lastly, we ran the regressions on the entire credit data to get the final coefficients for each of the regression models (as shown below in Figure #).  
+Lastly, we ran the regressions on the entire credit data to get the final coefficients for each of the regression models (as shown below in Table 3).  
 
 
 
