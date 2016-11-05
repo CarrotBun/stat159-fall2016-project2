@@ -1,5 +1,5 @@
 ---
-title: "Advertising Data Regression Fits"
+title: "Credit Debt Prediction Models"
 author: "Elly Wang, Lily Li"
 date: "November 5, 2016"
 output: pdf_document
