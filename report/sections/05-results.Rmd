@@ -17,14 +17,6 @@ print(tb_all, comment = FALSE)
 ```
 Comparing them side by side, we noticed that most coeffiicents are about the same.  In particular, we noticed that the coefficient estimates for OLS and PCR came out to the be the same. 
 
-```{r results= 'asis', echo =FALSE}
-MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
-names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
-
-tb_mse <- xtable(t(data.frame(MSE)),digits = 9, caption = "Mean Squared Errors for all regression on test set")
-print(tb_mse, comment = FALSE)
-```
-
 ```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
 variable <- names(coef(OLS_final))
 c_estimates <- cbind(variable, coef_table)[-1,]
@@ -37,8 +29,22 @@ ggplot(c_estimates_tidy) +
 	guides(fill=guide_legend(title="Regression"))+
 	theme(axis.text.x=element_blank(),
 		axis.ticks.x=element_blank())
-
 ```
+
+```{r results= 'asis', echo =FALSE}
+MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
+names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
+
+tb_mse <- xtable(t(data.frame(MSE)),digits = 9, caption = "Mean Squared Errors for all regression on test set")
+print(tb_mse, comment = FALSE)
+```
+Looking at the MSE of the regressions, we find that the minimum MSE is `min(MSE)`, corresponding to Lasso Regression. It's makes sense because Lasso sparsifies the regressors and takes multicollinearity into account.  
+
+The coefficients for Lasso seem to take out Education, GenderFemale indicator, Martial Status indicator, Asian Ethnicity indicator, and Caucasion Ethnicity indicator. The highest coefficient is `rownames(coef_table)[which.max(coef_table[ ,"Lasso"])]` at `max(coef_table[ ,"Lasso"])`, meaning there is strong positive association between credit limit and credit debt. The lowest coefficient is `rownames(coef_table)[which.min(coef_table[ ,"Lasso"])]` at `min(coef_table[ ,"Lasso"])`, meaning this is the strongest negative correlation. An increase in income is associated with a decrease in credit card debt.  
+
+Being a student, having more cards, and having a higher rating, are all associated with a higher credit card debt while an increase in age is associated with a decrease in credit card debt. However, age and number of cards owned by an individual are relatively small in magnitude so these estimates should be considered with caution. 
+
+
 
 
 
