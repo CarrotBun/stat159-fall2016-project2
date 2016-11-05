@@ -20,12 +20,11 @@ print(tb_OLS, comment= FALSE)
 
 #### Ridge and Lasso Regressions
 
-To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. From the validation plots shown below, 
+To run Ridge and Lasso Regressions in R, we used the package `glmnet`. 
 
+In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. The validation plots shown in Figure 5 in appendix shows the Mean-Squared Errors plotted against $log(\lambda)$. 
 
-
-Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE. Figures below show the prediction plots and indicates how close the predictions were to the actual values.
-
+Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE. The top graphs in Figure 6 in appendix show the prediction plots and indicates how close the predictions were to the actual values.
 
 Lastly, we ran the regressions on the entire credit data using the best lambda values and got the final coefficient values show in the combined table in Table 3 under results. 
 
@@ -33,9 +32,9 @@ Lastly, we ran the regressions on the entire credit data using the best lambda v
 
 To perform Principal Components Regression (PCR) and the Partial Least Squares Regression (PLSR) in R, we used the package `pls`. 
 
-To begin, we ran PCR and PLSR on our train data set with cross validation. The functions to do so are `pcr()` and `pls()` for PCR and PLSR, respectively. Then, with the cross validation object, we used `which.min()` function to find the component that has the least predicted residual error sum of squares (PRESS) from the cross-validation, and marked that as the best model. The best models we found for PCR and PLSR are `r pcr_best` and `r pls_best`, respectively.
+To begin, we ran PCR and PLSR on our train data set with cross validation. The functions to do so are `pcr()` and `pls()` for PCR and PLSR, respectively. Then, with the cross validation object, we used `which.min()` function to find the component that has the least predicted residual error sum of squares (PRESS) from the cross-validation, and marked that as the best model. The best models we found for PCR and PLSR are `r pcr_best` and `r pls_best`, respectively. The validation plots for PCR adn PLSR can be found in Figure 5 of appendix, the dotted line marks the best component chosen by the minimization of PRESS. 
 
-Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. Figures in appendix show the prediction plots and indicates how close the predictions were to the actual values.
+Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. Figure 6 in appendix show the prediction plots and indicates how close the predictions were to the actual values.
 
 Lastly, we ran the regressions on the entire credit data to get the final coefficients for each of the regression models (as shown below in Table 3).  
 

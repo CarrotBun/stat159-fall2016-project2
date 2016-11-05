@@ -17,6 +17,9 @@ print(tb_all, comment = FALSE)
 ```
 Comparing them side by side, we noticed that most coeffiicents are about the same.  In particular, we noticed that the coefficient estimates for OLS and PCR came out to the be the same. 
 
+Below, in Figure #, we see a visual comparison of each coefficient estimates computed from the different regressions. 
+
+##### Figure : Barplot represenation for comparison of coefficient estimates
 ```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
 variable <- names(coef(OLS_final))
 c_estimates <- cbind(variable, coef_table)[-1,]
@@ -31,6 +34,8 @@ ggplot(c_estimates_tidy) +
 		axis.ticks.x=element_blank())
 ```
 
+From the facetted barplot, we see that the esimates for coefficient on `StudentYes`, `Income`, Gender, and Ethinicity variables vary by a bit, while the coefficients on the other variables vary greatly across regressions. The great variation of estimates of coefficients on some of the variables most likely due to the variability of the data itself and how each regression treats the variation.
+
 ```{r results= 'asis', echo =FALSE}
 MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
 names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
@@ -40,10 +45,11 @@ print(tb_mse, comment = FALSE)
 ```
 Looking at the MSE of the regressions, we find that the minimum MSE is `min(MSE)`, corresponding to Lasso Regression. It's makes sense because Lasso sparsifies the regressors and takes multicollinearity into account.  
 
-The coefficients for Lasso seem to take out Education, GenderFemale indicator, Martial Status indicator, Asian Ethnicity indicator, and Caucasion Ethnicity indicator. The highest coefficient is `rownames(coef_table)[which.max(coef_table[ ,"Lasso"])]` at `max(coef_table[ ,"Lasso"])`, meaning there is strong positive association between credit limit and credit debt. The lowest coefficient is `rownames(coef_table)[which.min(coef_table[ ,"Lasso"])]` at `min(coef_table[ ,"Lasso"])`, meaning this is the strongest negative correlation. An increase in income is associated with a decrease in credit card debt.  
+The coefficients for Lasso seem to take out Education, GenderFemale indicator, Martial Status indicator, Asian Ethnicity indicator, and Caucasion Ethnicity indicator. The highest coefficient is `r rownames(coef_table)[which.max(coef_table[ ,"Lasso"])]` at `r max(coef_table[ ,"Lasso"])`, meaning there is strong positive association between credit limit and credit debt. The lowest coefficient is `r rownames(coef_table)[which.min(coef_table[ ,"Lasso"])]` at `r min(coef_table[ ,"Lasso"])`, meaning this is the strongest negative correlation. An increase in income is associated with a decrease in credit card debt.  
 
 Being a student, having more cards, and having a higher rating, are all associated with a higher credit card debt while an increase in age is associated with a decrease in credit card debt. However, age and number of cards owned by an individual are relatively small in magnitude so these estimates should be considered with caution.  
 
+   
 
 
 

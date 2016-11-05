@@ -68,6 +68,7 @@ To find the best model for prediction, following regression models were consider
 - added constraint of $||\beta||^2_2 < c^2$
 - takes multicollinearity into account and does automatics parameter selection
 $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||^2_2$  
+- $\lambda$ is known as a tuning parameter, and $\lambda||\beta||^2_2$ is called a *shrinkage penalty* 
 
 
 ## Lasso Regression (LR)
@@ -165,3 +166,5 @@ Findings:
 
 ## Prediction Plot - Lasso
 ![Prediction for Lasso](../images/reg-plots/lasso-prediction-plot.png)
+
+## Conclusion 

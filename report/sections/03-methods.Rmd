@@ -1,9 +1,7 @@
----
-output: pdf_document
----
+
 ## Methods  
 
-###Standardization  
+### Standardization  
 The dataset includes categories measured in different scales. To prevent any biased weighting, we want to standardize the dataset before building any models upon it.  
 
 First, we create dummy variables for the qualitative variables discussed in the introduction. Next, we want to standardize the absolute quantitites to relative quantities (mean centering). This means that each variable will have mean zero, and standard deviation one. One reason to standardize variables is to have comparable scales. When you perform a regression analysis, the value of the computed coefficients will depend on the measurement scale of the associated predictors.  
@@ -17,7 +15,7 @@ Based on the Gauss-Markov theorem, OLS is the best linear unbiased estimator. Ho
 $$Balance = \beta_1 Income + \beta_2 Limit + \beta_3 Rating + \beta_4 Cards + \beta_5 Age ... + \beta_11EthnicityCaucasian$$  
 
 ####*Ridge Regression (RR)*  
-RR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||^2_2 < c^2$.  
+Ridge Regression is a variation of the minimization in OLS Regression but with a constraint of $||\beta||^2_2 < c^2$.  
 
 In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||^2_2$ 
 
@@ -26,7 +24,7 @@ A difference in behavior of RR is that as $\lambda$ increases, more weight is gi
 The main advantage of RR is that it takes multicollinearity into account and does automatics parameter selection. 
 
 ####*Lasso Regression (LR)*  
-LR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||_1 < c$. With c, the constraint shape becomes a diamond and any pairs of $\beta$ will likely contain zeros. Unlike RR, there is no explicit form of $\beta$.
+Lasso Regression is a variation of the minimization in OLS Regression but with a constraint of $||\beta||_1 < c$. With c, the constraint shape becomes a diamond and any pairs of $\beta$ will likely contain zeros. Unlike RR, there is no explicit form of $\beta$.
 
 In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||_1$  
 
@@ -36,7 +34,7 @@ The main advantage of LR is that it performs both parameter shrinkage through fe
 
 
 ####*Principal Component Regression (PCR)*
-PCR is based on principal component analysis. The goal of this method is to reduce the dimensions (created by the set of data points in n-dimensional space).  
+Principal Component Regression is based on principal component analysis. The goal of this method is to reduce the dimensions (created by the set of data points in n-dimensional space).  
 
 To do so, we want define a direction, the first principal component, that maximizes the the variability in the data set and set the second principal component perpendicular to this first principal component. As a result, each data point's coordinates will change to this new coordinate system.  
 
@@ -45,7 +43,7 @@ Having dimensions with the greatest variance will maximize preservation of dista
 ![A visual representation of PCA with reduction from 3 dimensions to 2 dimensions, *NLPCA*](http://www.nlpca.org/fig_pca_principal_component_analysis.png)
 
 ####*Partial Least Squares Regression (PLSR)*  
-PLSR, similar to PCR, is also a dimensionality reduction method. While PCR finds hyperplanes of maximum variance between the predictors and responses, PLSR projects the predicted variables and the observable variables into a new space.   
+Partial Least Squares Regression, similar to PCR, is also a dimensionality reduction method. While PCR finds hyperplanes of maximum variance between the predictors and responses, PLSR projects the predicted variables and the observable variables into a new space.   
 
 The main advantage is that PLSR uses the annotated label to maximize inter-class variance. It takes into account of the classes and tries to reduce the dimension while maximizing the separation of classes.  
 

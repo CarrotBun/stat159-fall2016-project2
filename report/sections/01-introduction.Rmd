@@ -1,6 +1,4 @@
----
-output: pdf_document
----
+
 ## Introduction  
 The prediction models are built upon the credit data set, which contains:  
 
@@ -26,5 +24,5 @@ Some questions we would like to explore include:
 1. What are the distributions of the different categories of the data?
 2. How well do each model fit the data?
 3. What is the MSE of each model?
-
+4. Which model gives the best prediction?
   
