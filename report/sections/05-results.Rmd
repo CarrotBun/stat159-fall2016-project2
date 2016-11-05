@@ -1,5 +1,6 @@
 ## Results
 
+Using the procedures described above in Analysis, we obtained the following results for the final coefficient estimates.
 
 ```{r results= 'asis', echo =FALSE}
 pcr_indice = ((pcr_best-1)*11 +1):(pcr_best*11)
@@ -11,15 +12,35 @@ coef_table <- data.frame(coef(OLS_final), sapply(c(ridge_final, lasso_final),as.
 rownames(coef_table) =  names(coef(OLS_final))
 colnames(coef_table) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 
-tb_all <- xtable(coef_table)
+tb_all <- xtable(coef_table, digits = 4, caption = "Estimates of coefficients for all regressions")
 print(tb_all, comment = FALSE)
 ```
-
+Comparing them side by side, we noticed that most coeffiicents are about the same.  In particular, we noticed that the coefficient estimates for OLS and PCR came out to the be the same. 
 
 ```{r results= 'asis', echo =FALSE}
 MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
 names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 
-tb_mse <- xtable(t(data.frame(MSE)),digits = 9)
+tb_mse <- xtable(t(data.frame(MSE)),digits = 9, caption = "Mean Squared Errors for all regression on test set")
 print(tb_mse, comment = FALSE)
 ```
+
+```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
+library(tidyr)
+library(ggplot2)
+variable <- names(coef(OLS_final))
+c_estimates <- cbind(variable, coef_table)[-1,]
+c_estimates_tidy <- gather(c_estimates, key = reg, value= coef_est, -variable)
+c_estimates_tidy$reg <- factor(c_estimates_tidy$reg, level = c_estimates_tidy$reg)
+ggplot(c_estimates_tidy) + 
+	geom_bar(aes(x = reg, y = coef_est, fill = reg), stat = "identity")+ 
+	facet_wrap(~variable, scales= 'free') + 
+	labs(title = "Estimated Coefficients Faceted by Variable", y = "Estimated Coefficient", x = "Regression") +
+	guides(fill=guide_legend(title="Regression"))+
+	theme(axis.text.x=element_blank(),
+		axis.ticks.x=element_blank())
+
+```
+
+
+

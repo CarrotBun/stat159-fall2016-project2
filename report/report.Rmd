@@ -48,7 +48,7 @@ The prediction models are built upon the credit data set, which contains:
 ####Qualitative Variables:
 * **gender**
 * **student**
-* **status**: marital status
+* **married**: marital status
 * **ethnicity**: Caucasian, African American
 or Asian
   
@@ -64,23 +64,6 @@ Some questions we would like to explore include:
 ## Data
 
 The credit data used in this project includes both categorical and quantitative data.   
-
-Quantitative variables are  
-
-* Income
-* Limit
-* Rating
-* Cards: Number of Credit Cards
-* Age
-* Education(years), and
-* Balance
-
-and Categorical variables include  
-
-* Gender: Female or Male
-* Student: Yes or No
-* Married: Yes or No, and
-* Ethnicity: African, American, Asian, or Caucasian
 
 To take a closer look at each variables included in the **Credit** dataset, we looked at the distributions of each quantitative variable (Figures 1 and 2) and the conditional distribution of each categorical variable against Balance (Figure 3).
 
@@ -183,46 +166,26 @@ To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order 
 
 Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE.
 
-Lastly, we were able to use run the regressions on the entire credit data, and arrive at the following coefficients:
+Lastly, we ran the regressions on the entire credit data using the best lambda values and got the final coefficient values show in the combined table in Table 3 under results. 
 
-```{r results= 'asis', echo =FALSE}
-ridge_lasso <- data.frame(sapply(c(ridge_final, lasso_final),as.matrix))
+#### Principal Components Regression and Partial Least Squares Regression
 
-rownames(ridge_lasso) =  names(coef(OLS_final))
-colnames(ridge_lasso) = c("Ridge", "Lasso")
+To perform Principal Components Regression (PCR) and the Partial Least Squares Regression (PLSR) in R, we used the package `pls`. 
 
-t(ridge_lasso)
-#tb_RL <- xtable(ridge_lasso)
-#print(tb_RL, comment = FALSE)
-```
+To begin, we ran PCR and PLSR on our train data set with cross validation. The functions to do so are `pcr()` and `pls()` for PCR and PLSR, respectively. Then, with the cross validation object, we used `which.min()` function to find the component that has the least predicted residual error sum of squares (PRESS) from the cross-validation, and marked that as the best model. The best models we found for PCR and PLSR are `r pcr_best` and `r pls_best`, respectively.
 
+Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. 
 
-#### Principal Component Regression and Partial Least Sqauares Regression
-
-To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. 
-
-Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE.
-
-Lastly, we were able to use run the regressions on the entire credit data, and arrive at the following coefficients:
+Lastly, we ran the regressions on the entire credit data to get the final coefficients for each of the regression models (as shown below in Table 3).  
 
 
 
-```{r echo = FALSE, results = 'hide', message= FALSE}
-#This chunck is here so the later code chuncks work
-ridge_final 
-```
-
-```{r results= 'asis', echo =FALSE}
-tb_ridge <- xtable(as.matrix(ridge_final), caption = 'Final Coefficents for Ridge Regression')
-print(tb_ridge, comment= FALSE)
-```
-
-```{r results= 'asis', echo =FALSE}
-tb_lasso <- xtable(as.matrix(lasso_final), caption = 'Final Coefficents for Lasso Regression')
-print(tb_lasso, comment= FALSE)
-```
 
 
+
+## Results
+
+Using the procedures described above in Analysis, we obtained the following results for the final coefficient estimates.
 
 ```{r results= 'asis', echo =FALSE}
 pcr_indice = ((pcr_best-1)*11 +1):(pcr_best*11)
@@ -234,19 +197,43 @@ coef_table <- data.frame(coef(OLS_final), sapply(c(ridge_final, lasso_final),as.
 rownames(coef_table) =  names(coef(OLS_final))
 colnames(coef_table) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 
-tb_all <- xtable(coef_table)
+tb_all <- xtable(coef_table, digits = 4, caption = "Estimates of coefficients for all regressions")
 print(tb_all, comment = FALSE)
 ```
-
+Comparing them side by side, we noticed that most coeffiicents are about the same.  In particular, we noticed that the coefficient estimates for OLS and PCR came out to the be the same. 
 
 ```{r results= 'asis', echo =FALSE}
 MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
 names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 
-tb_mse <- xtable(t(data.frame(MSE)),digits = 9)
+tb_mse <- xtable(t(data.frame(MSE)),digits = 9, caption = "Mean Squared Errors for all regression on test set")
 print(tb_mse, comment = FALSE)
 ```
 
+```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
+library(tidyr)
+library(ggplot2)
+variable <- names(coef(OLS_final))
+c_estimates <- cbind(variable, coef_table)[-1,]
+c_estimates_tidy <- gather(c_estimates, key = reg, value= coef_est, -variable)
+c_estimates_tidy$reg <- factor(c_estimates_tidy$reg, level = c_estimates_tidy$reg)
+ggplot(c_estimates_tidy) + 
+	geom_bar(aes(x = reg, y = coef_est, fill = reg), stat = "identity")+ 
+	facet_wrap(~variable, scales= 'free') + 
+	labs(title = "Estimated Coefficients Faceted by Variable", y = "Estimated Coefficient", x = "Regression") +
+	guides(fill=guide_legend(title="Regression"))+
+	theme(axis.text.x=element_blank(),
+		axis.ticks.x=element_blank())
+
+
+ggplot(c_estimates_tidy) + 
+	geom_bar(aes(x = variable, y = coef_est, fill = reg), stat = "identity")+ 
+	facet_wrap(~reg, scales= 'free') + 
+	labs(title = "Estimated Coefficients Faceted by Variable", y = "Estimated Coefficient", x = "Regression") +
+	guides(fill=guide_legend(title="Regression"))+
+	theme(axis.text.x=element_blank(),
+		axis.ticks.x=element_blank())
+```
 
 
 
