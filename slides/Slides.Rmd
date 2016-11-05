@@ -1,0 +1,64 @@
+---
+title: "Credit Debt"
+author: "Lily Li and Elly Wang"
+date: "11/4/2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r include = FALSE, echo = FALSE}
+library(xtable)
+library(tidyr)
+library(ggplot2)
+
+load("../data/OLS-Regression.RData")
+load("../data/Ridge-Regression.RData")
+load("../data/Lasso-Regression.RData")
+load("../data/PCR-Regression.RData")
+load("../data/PLS-Regression.RData")
+
+load("../data/correlation-matrix.RData")
+```
+
+## Credit Card Debt
+
+## Introduction
+Credit data set:
+- Quantitative variables: balance, age, cards, education, income, limit, and rating
+- Qualitative variables: gender, student, married, and ethnicity
+
+
+## Data
+![Scatterplot Matrix](../images/scatterplot-matrix.png)
+
+## Data
+```{r, results = "asis"}
+tb_corr <- xtable(lower, caption = 'Correlation Matrix for Credit Data')
+print(tb_corr, comment= FALSE)
+```
+
+## Models
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Ordinary Least Squares Regression (OLS)
+
+```{r pressure}
+plot(pressure)
+```
+
+## Ridge Regression (RR)
+
+
+## Lasso Regression (LR)
+
+
+## Principal Component Regression (PCR)
+
+
+##Partial Least Squares Regression (PLSR)
