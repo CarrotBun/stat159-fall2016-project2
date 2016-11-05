@@ -12,6 +12,8 @@ The motivation of this report is to develop a prediction model based on the char
 
 ```{r include = FALSE, echo = FALSE}
 library(xtable)
+library(tidyr)
+library(ggplot2)
 
 load("../data/OLS-Regression.RData")
 load("../data/Ridge-Regression.RData")
@@ -21,5 +23,12 @@ load("../data/PLS-Regression.RData")
 
 load("../data/correlation-matrix.RData")
 ```
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H')
+```
+
+
+
   
 

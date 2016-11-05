@@ -16,7 +16,7 @@ The prediction models are built upon the credit data set, which contains:
 ####Qualitative Variables:
 * **gender**
 * **student**
-* **status**: marital status
+* **married**: marital status
 * **ethnicity**: Caucasian, African American
 or Asian
   

@@ -5,53 +5,10 @@ date: "November 5, 2016"
 output: pdf_document
 ---
 ## Abstract  
-A prevalent problem among businesses is the effect of advertising efforts. In the past, newspapers were the main source of information but as technology advanced, TV became the main channel of marketing.  
+A prevalent problem among banking institutions is predicting the behavior of their clients such as paying their bills promptly. In this report, we will explore the relationship between an individual's characteristics and their payment behavior to develop a prediction model.  
 
-The motivation of this report is to analyze the relationship between characteristics of a credit card owner to their monthly leftover credit card balance. The dataset and more information can be found in the book, [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf). 
+The motivation of this report is to develop a prediction model based on the characteristics of a credit card owner. The dataset and more information can be found in the book, [*An Introduction to Statistical Learning*](http://www-bcf.usc.edu/~gareth/ISL/ISLR%20Sixth%20Printing.pdf).   
 
-
-## Data
-
-The credit data used in this project includes both categorical and quantitative data.   
-
-Quantitative variables are  
-
-* Income
-* Limit
-* Rating
-* Cards: Number of Credit Cards
-* Age
-* Education(years), and
-* Balance
-
-and Categorical variables include  
-
-* Gender: Female or Male
-* Student: Yes or No
-* Married: Yes or No, and
-* Ethnicity: African, American, Asian, or Caucasian
-
-To take a closer look at each variables included in the **Credit** dataset, we looked at the 
-Distributions of quantitative variables are shown below in Figure 1.
-
-
-Below (in Figure 2) is the histogram showing the distribution of Balance:  
-
-A scatterplot matrix of all the quantitative variables are show below in Figure 3:  
-
-
-
-
-
-Distribution of categorical variables is shown below in Figure 4.
-
-
-
-
-
-## Analysis
-
-As noted above, we used several regression methods on the dataset Credit.
 
 ```{r include = FALSE, echo = FALSE}
 library(xtable)
@@ -65,54 +22,222 @@ load("../data/PLS-Regression.RData")
 load("../data/correlation-matrix.RData")
 ```
 
-#### OLS
-
-```{r results= 'asis', echo =FALSE}
-tb_OLS <- xtable(OLS_reg, caption = 'Multiple Ordinary Linear Regression (OLS)')
-print(tb_OLS, comment= FALSE)
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(fig.pos = 'H')
 ```
 
-```{r echo = FALSE, results = 'hide', message= FALSE}
+
+
+  
+
+---
+output: pdf_document
+---
+## Introduction  
+The prediction models are built upon the credit data set, which contains:  
+
+####Quantitative Variables:
+* **balance**: average credit card debt for a number of individuals
+* **age**: age of the individual
+* **cards**: number of credit cards owned by the individual
+* **education**: years of education of the individual
+* **income**: in thousands of dollars
+* **limit**: credit limit
+* **rating**: the individual's credit rating
+
+####Qualitative Variables:
+* **gender**
+* **student**
+* **married**: marital status
+* **ethnicity**: Caucasian, African American
+or Asian
+  
+  
+Some questions we would like to explore include:  
+
+1. What are the distributions of the different categories of the data?
+2. How well do each model fit the data?
+3. What is the MSE of each model?
+
+  
+
+## Data
+
+The credit data used in this project includes both categorical and quantitative data.   
+
+To take a closer look at each variables included in the **Credit** dataset, we looked at the distributions of each quantitative variable (Figures 1 and 2) and the conditional distribution of each categorical variable against Balance (Figure 3).
+
+As shown through the historgrams, the distribution of Incomes, Limits, Ratings, # of cards, and balances are slightly skewed to the right. A possible explanation for the similar distribution could be that all five factors are highly correlated -- Individuals with higher incomes are more likely to have higher credit limit and better ratings. 
+
+```{r, results = "asis", echo = FALSE}
+tb_corr <- xtable(lower, caption = 'Correlation Matrix for Credit Data')
+print(tb_corr, comment= FALSE)
+```
+
+Examining the correlation matrix and scatterplot matrix (Figure 4), we see that there is an extremely high correlation between Limit and Rating. In addition, the correlations between Income and Limit and Income and Rating are also fairly high. The high correlations could be potentional problems in the OLS regression due to almost collinearity. 
+
+In addition to histograms for quantitative variables in credit, we also examined the conditional boxplots of categorical variables against Balance (Figure 3). The boxplots show that the balance is right-skewed for most groups, and with exception of students who have a fairly symmetric distribution for balances. In addition to the distribution, we also note that excluding the students, the averages for all groups in each categorical variable are about the same. For the student variable, we see that the students have much higher average for balance when compared to the non-students, and that makes sense because usually students have little to no income and still have to pay tuition on their own.
+
+
+
+---
+output: pdf_document
+---
+## Methods  
+
+###Standardization  
+The dataset includes categories measured in different scales. To prevent any biased weighting, we want to standardize the dataset before building any models upon it.  
+
+First, we create dummy variables for the qualitative variables discussed in the introduction. Next, we want to standardize the absolute quantitites to relative quantities (mean centering). This means that each variable will have mean zero, and standard deviation one. One reason to standardize variables is to have comparable scales. When you perform a regression analysis, the value of the computed coefficients will depend on the measurement scale of the associated predictors.  
+
+
+###Regression Models  
+
+####*Ordinary Least Squares Regression (OLS)*  
+Based on the Gauss-Markov theorem, OLS is the best linear unbiased estimator. However, if predictors (regressors) are correlated, the stability of the $\hat{beta}$ decreases, meaning, every estimate of $\beta$ could be very different and not converge to the true population coefficient. 
+
+$$Balance = \beta_1 Income + \beta_2 Limit + \beta_3 Rating + \beta_4 Cards + \beta_5 Age ... + \beta_11EthnicityCaucasian$$  
+
+####*Ridge Regression (RR)*  
+RR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||^2_2 < c^2$.  
+
+In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||^2_2$ 
+
+A difference in behavior of RR is that as $\lambda$ increases, more weight is given to the second term in the minimization. This means that with a large $\lambda$, the $\beta$ will be small.  
+
+The main advantage of RR is that it takes multicollinearity into account and does automatics parameter selection. 
+
+####*Lasso Regression (LR)*  
+LR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||_1 < c$. With c, the constraint shape becomes a diamond and any pairs of $\beta$ will likely contain zeros. Unlike RR, there is no explicit form of $\beta$.
+
+In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||_1$  
+
+The main advantage of LR is that it performs both parameter shrinkage through feature selection (sparsify regressors/predictors) and variable selection automatically.  
+
+![a visual representation of Ridge and Lasso Regressions, *Nicolas Gerard*](http://gerardnico.com/wiki/_media/data_mining/lasso_vs_ridge_regression.png?w=800&tok=f55022) 
+
+
+####*Principal Component Regression (PCR)*
+PCR is based on principal component analysis. The goal of this method is to reduce the dimensions (created by the set of data points in n-dimensional space).  
+
+To do so, we want define a direction, the first principal component, that maximizes the the variability in the data set and set the second principal component perpendicular to this first principal component. As a result, each data point's coordinates will change to this new coordinate system.  
+
+Having dimensions with the greatest variance will maximize preservation of distances between the data points. It's important because physical distances also represent similarity. 
+
+![A visual representation of PCA with reduction from 3 dimensions to 2 dimensions, *NLPCA*](http://www.nlpca.org/fig_pca_principal_component_analysis.png)
+
+####*Partial Least Squares Regression (PLSR)*  
+PLSR, similar to PCR, is also a dimensionality reduction method. While PCR finds hyperplanes of maximum variance between the predictors and responses, PLSR projects the predicted variables and the observable variables into a new space.   
+
+The main advantage is that PLSR uses the annotated label to maximize inter-class variance. It takes into account of the classes and tries to reduce the dimension while maximizing the separation of classes.  
+
+![A visual representation of PCA and PLS differences, *Gustavo Fuhr*](https://qph.ec.quoracdn.net/main-qimg-d0e03ac2e178d4342bb6afcb029d83ce?convert_to_webp=true)
+
+
+###Cross Validation  and Train-Test Sets
+Because we have limited amount of observations to build and test the model and we want to prevent bias, we will build and test the model using different subsets of the whole data set.  
+
+We built train sets of 300 out of the total 400 observations and test sets of the remaining 100 by random sampling (without replacement). We repeated this process 10 times for a 10 fold cross validation when we ran the regressions. 
+  
+  
+## Analysis
+
+Using the regression methods above, we performed analysis on the credit data set as described in this section. 
+
+```{r results = 'hide', echo = FALSE, message= FALSE}
 #This chunck is here so the later code chuncks work
 ridge_final 
 ```
 
-```{r results= 'asis', echo =FALSE}
-tb_ridge <- xtable(as.matrix(ridge_final), caption = 'Final Coefficents for Ridge Regression')
-print(tb_ridge, comment= FALSE)
-```
+#### OLS
+
+To conduct the Ordinary Least Squares (OLS) regression, we first ran the regression using `lm()` on the training set. With the obtained coefficients, we predicted the balance for the test set and compared it with the actual balance data from the test set.
+
+The table below shows the OLS coefficients we obtained from running OLS on the entire set of data (trained and test set).
 
 ```{r results= 'asis', echo =FALSE}
-tb_lasso <- xtable(as.matrix(lasso_final), caption = 'Final Coefficents for Lasso Regression')
-print(tb_lasso, comment= FALSE)
+tb_OLS <- xtable(OLS_final, caption = 'Multiple Ordinary Linear Regression (OLS)')
+print(tb_OLS, comment= FALSE)
 ```
 
+#### Ridge and Lasso Regressions
 
+To run Ridge and Lasso Regressions in R, we used the package `glmnet`. In order to find the best lambda values for the regressions, we created an array of 100 lambda values that ranges from `r 10^-2` to `r 10^10` and used `cv.glmnet()` to run 10-fold cross validations on all those lambda values. With the function `lambda.min`, we were able to find that the best lambda values are `r ridge_best` and `r lasso_best` for ridge and lasso regression respectively. 
+
+Using the best lambda for each regression, we predicted the balance values with the predict function in R and compared them with the actual balance values in the test set to get the test MSE.
+
+Lastly, we ran the regressions on the entire credit data using the best lambda values and got the final coefficient values show in the combined table in Table 3 under results. 
+
+#### Principal Components Regression and Partial Least Squares Regression
+
+To perform Principal Components Regression (PCR) and the Partial Least Squares Regression (PLSR) in R, we used the package `pls`. 
+
+To begin, we ran PCR and PLSR on our train data set with cross validation. The functions to do so are `pcr()` and `pls()` for PCR and PLSR, respectively. Then, with the cross validation object, we used `which.min()` function to find the component that has the least predicted residual error sum of squares (PRESS) from the cross-validation, and marked that as the best model. The best models we found for PCR and PLSR are `r pcr_best` and `r pls_best`, respectively.
+
+Using the best model, we predicted the balance values for the test set. Comparing the predicted values with the actual values, we calculated the mean squared error to measure fitness. 
+
+Lastly, we ran the regressions on the entire credit data to get the final coefficients for each of the regression models (as shown below in Table 3).  
+
+
+
+
+
+
+## Results
+
+Using the procedures described above in Analysis, we obtained the following results for the final coefficient estimates.
 
 ```{r results= 'asis', echo =FALSE}
 pcr_indice = ((pcr_best-1)*11 +1):(pcr_best*11)
 pls_indice = ((pls_best-1)*11 +1):(pls_best*11)
-coef_table <- data.frame(coef(OLS_reg), sapply(c(ridge_final, lasso_final),as.matrix),
+coef_table <- data.frame(coef(OLS_final), sapply(c(ridge_final, lasso_final),as.matrix),
 	c(NA, coef(pcr_final)[pcr_indice]),
 	c(NA, coef(pls_final)[pls_indice]))
 
-rownames(coef_table) =  names(coef(OLS_reg))
+rownames(coef_table) =  names(coef(OLS_final))
 colnames(coef_table) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 
-tb_all <- xtable(coef_table)
+tb_all <- xtable(coef_table, digits = 4, caption = "Estimates of coefficients for all regressions")
 print(tb_all, comment = FALSE)
 ```
-
+Comparing them side by side, we noticed that most coeffiicents are about the same.  In particular, we noticed that the coefficient estimates for OLS and PCR came out to the be the same. 
 
 ```{r results= 'asis', echo =FALSE}
 MSE <- c(OLS_tMSE, ridge_tMSE, lasso_tMSE, pcr_tMSE, pls_tMSE)
 names(MSE) = c("OLS", "Ridge", "Lasso", "PCR", "PLS")
 
-tb_mse <- xtable(t(data.frame(MSE)),digits = 9)
+tb_mse <- xtable(t(data.frame(MSE)),digits = 9, caption = "Mean Squared Errors for all regression on test set")
 print(tb_mse, comment = FALSE)
 ```
 
+```{r results= 'asis', echo =FALSE, message = FALSE, warning = FALSE}
+library(tidyr)
+library(ggplot2)
+variable <- names(coef(OLS_final))
+c_estimates <- cbind(variable, coef_table)[-1,]
+c_estimates_tidy <- gather(c_estimates, key = reg, value= coef_est, -variable)
+c_estimates_tidy$reg <- factor(c_estimates_tidy$reg, level = c_estimates_tidy$reg)
+ggplot(c_estimates_tidy) + 
+	geom_bar(aes(x = reg, y = coef_est, fill = reg), stat = "identity")+ 
+	facet_wrap(~variable, scales= 'free') + 
+	labs(title = "Estimated Coefficients Faceted by Variable", y = "Estimated Coefficient", x = "Regression") +
+	guides(fill=guide_legend(title="Regression"))+
+	theme(axis.text.x=element_blank(),
+		axis.ticks.x=element_blank())
 
+
+ggplot(c_estimates_tidy) + 
+	geom_bar(aes(x = variable, y = coef_est, fill = reg), stat = "identity")+ 
+	facet_wrap(~reg, scales= 'free') + 
+	labs(title = "Estimated Coefficients Faceted by Variable", y = "Estimated Coefficient", x = "Regression") +
+	guides(fill=guide_legend(title="Regression"))+
+	theme(axis.text.x=element_blank(),
+		axis.ticks.x=element_blank())
+```
+
+
+
+\pagebreak 
 
 
 ## Appendix
@@ -126,17 +251,22 @@ print(tb_mse, comment = FALSE)
 \includegraphics[width=0.5\textwidth]{../images/histogram-Age.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/histogram-Education.png}\par
 
+\pagebreak 
+
 ##### Figure 2: Distribution of Balance
 ![Fig 2: Balance](../images/histogram-Balance.png)
 
-##### Figure 3: Scatterplot Matrix for all quantiative variables
-![Fig 3: Scatterplot Matrix](../images/scatterplot-matrix.png)
+\pagebreak 
 
-
-##### Figure 4: Conditional boxplots for categorical variables in Credit and Balance
+##### Figure 3: Conditional boxplots for categorical variables in Credit and Balance
 
 \noindent
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Gender.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Student.png}\
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Married.png}\hspace{0.1\textwidth}
 \includegraphics[width=0.5\textwidth]{../images/boxplot-Ethnicity.png}\par
+
+\pagebreak 
+
+##### Figure 4: Scatterplot Matrix for all quantiative variables
+![Fig 4: Scatterplot Matrix](../images/scatterplot-matrix.png)
