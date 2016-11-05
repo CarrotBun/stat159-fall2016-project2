@@ -58,18 +58,37 @@ To find the best model for prediction, following regression models were consider
 
 ## Ordinary Least Squares Regression (OLS)
 
+- Gauss-Markov theorem: OLS is the best linear unbiased estimator
+- correlated regressors will destabilize $\beta$ estimates 
+
 
 ## Ridge Regression (RR)
+
+- variation of the minimization in OLS Regression
+- added constraint of $||\beta||^2_2 < c^2$
+- takes multicollinearity into account and does automatics parameter selection
+$min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||^2_2$  
 
 
 ## Lasso Regression (LR)
 
+- variation of the minimization in OLS Regression
+- added constraint of $||\beta||_1 < c$
+- parameter shrinkage through feature selection (sparsify regressors/predictors)
+- variable selection
+$min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||_1$ 
+
 
 ## Principal Components Regression (PCR)
+
+- dimensionality reduction method
+- maximizes the the variability in the data set
 
 
 ## Partial Least Squares Regression (PLSR)
 
+- dimensionality reduction method
+- takes into account of the classes and tries to reduce the dimension while maximizing the separation of classes
 
 #Analysis 
 

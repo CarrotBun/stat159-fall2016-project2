@@ -219,13 +219,41 @@
 
 </article></slide><slide class=''><hgroup><h2>Ordinary Least Squares Regression (OLS)</h2></hgroup><article  id="ordinary-least-squares-regression-ols">
 
+<ul>
+<li>Gauss-Markov theorem: OLS is the best linear unbiased estimator</li>
+<li>correlated regressors will destabilize \(\beta\) estimates</li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>Ridge Regression (RR)</h2></hgroup><article  id="ridge-regression-rr">
+
+<ul>
+<li>variation of the minimization in OLS Regression</li>
+<li>added constraint of \(||\beta||^2_2 &lt; c^2\)</li>
+<li>takes multicollinearity into account and does automatics parameter selection \(min \beta\) \(||y-A\beta||^2_2 + \lambda||\beta||^2_2\)</li>
+</ul>
 
 </article></slide><slide class=''><hgroup><h2>Lasso Regression (LR)</h2></hgroup><article  id="lasso-regression-lr">
 
+<ul>
+<li>variation of the minimization in OLS Regression</li>
+<li>added constraint of \(||\beta||_1 &lt; c\)</li>
+<li>parameter shrinkage through feature selection (sparsify regressors/predictors)</li>
+<li>variable selection \(min \beta\) \(||y-A\beta||^2_2 + \lambda||\beta||_1\)</li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>Principal Components Regression (PCR)</h2></hgroup><article  id="principal-components-regression-pcr">
 
+<ul>
+<li>dimensionality reduction method</li>
+<li>maximizes the the variability in the data set</li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>Partial Least Squares Regression (PLSR)</h2></hgroup><article  id="partial-least-squares-regression-plsr">
+
+<ul>
+<li>dimensionality reduction method</li>
+<li>takes into account of the classes and tries to reduce the dimension while maximizing the separation of classes</li>
+</ul>
 
 </article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>Analysis</h2></hgroup><article  id="analysis">
 
