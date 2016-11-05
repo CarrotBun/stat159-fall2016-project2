@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 ## Methods  
 
 ###Standardization  
@@ -9,25 +12,27 @@ First, we create dummy variables for the qualitative variables discussed in the 
 ###Regression Models  
 
 ####*Ordinary Least Squares Regression (OLS)*  
-Based on the Gauss-Markov theorem, OLS is the best linear unbiased estimator. However, if predictors (regressors) are correlated, the stability of the $$\hat{beta}$$ decreases, meaning, every estimate of $$\beta$$ could be very different and not converge to the true population coefficient. 
+Based on the Gauss-Markov theorem, OLS is the best linear unbiased estimator. However, if predictors (regressors) are correlated, the stability of the $\hat{beta}$ decreases, meaning, every estimate of $\beta$ could be very different and not converge to the true population coefficient. 
 
 $$Balance = \beta_1 Income + \beta_2 Limit + \beta_3 Rating + \beta_4 Cards + \beta_5 Age ... + \beta_11EthnicityCaucasian$$  
 
 ####*Ridge Regression (RR)*  
-RR is a variation of the minimization in OLS Regression but with a constraint of $$$||\beta||^2_2 < c^2$$.  
+RR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||^2_2 < c^2$.  
 
-In vector form: $$min \beta$$  $$||y-A\beta||^2_2 + \lambda||\beta||^2_2$$  
+In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||^2_2$ 
 
-A difference in behavior of RR is that as $$\lambda$$ increases, more weight is given to the second term in the minimization. This means that with a large $$\lambda$$, the $$\beta$$s will be small.  
+A difference in behavior of RR is that as $\lambda$ increases, more weight is given to the second term in the minimization. This means that with a large $\lambda$, the $\beta$ will be small.  
 
 The main advantage of RR is that it takes multicollinearity into account and does automatics parameter selection. 
 
 ####*Lasso Regression (LR)*  
-LR is a variation of the minimization in OLS Regression but with a constraint of $$$||\beta||_1 < c$$. With c, the constraint shape becomes a diamond and any pairs of $$\beta$$s will likely contain zeros. Unlike RR, there is no explicit form of $$\beta$$.
+LR is a variation of the minimization in OLS Regression but with a constraint of $||\beta||_1 < c$. With c, the constraint shape becomes a diamond and any pairs of $\beta$ will likely contain zeros. Unlike RR, there is no explicit form of $\beta$.
 
-In vector form: $$min \beta$$  $$||y-A\beta||^2_2 + \lambda||\beta||_1$$  
+In vector form: $min \beta$ $||y-A\beta||^2_2 + \lambda||\beta||_1$  
 
-The main advantage of LR is that it performs both parameter shrinkage through feature selection (sparsify regressors/predictors) and variable selection automatically. 
+The main advantage of LR is that it performs both parameter shrinkage through feature selection (sparsify regressors/predictors) and variable selection automatically.  
+
+![a visual representation of Ridge and Lasso Regressions, *Nicolas Gerard*](http://gerardnico.com/wiki/_media/data_mining/lasso_vs_ridge_regression.png?w=800&tok=f55022) 
 
 
 ####*Principal Component Regression (PCR)*
@@ -39,7 +44,15 @@ Having dimensions with the greatest variance will maximize preservation of dista
 
 ![A visual representation of PCA with reduction from 3 dimensions to 2 dimensions, *NLPCA*](http://www.nlpca.org/fig_pca_principal_component_analysis.png)
 
-####*Partial Least Squares Regression (PLSR)*
+####*Partial Least Squares Regression (PLSR)*  
+PLSR, similar to PCR, is also a dimensionality reduction method. While PCR finds hyperplanes of maximum variance between the predictors and responses, PLSR projects the predicted variables and the observable variables into a new space.   
+
+The main advantage is that PLSR uses the annotated label to maximize inter-class variance. It takes into account of the classes and tries to reduce the dimension while maximizing the separation of classes.  
+
+![A visual representation of PCA and PLS differences, *Gustavo Fuhr*](https://qph.ec.quoracdn.net/main-qimg-d0e03ac2e178d4342bb6afcb029d83ce?convert_to_webp=true)
 
 
-##Cross Validation
+###Cross Validation  and Train-Test Sets
+Because we have limited amount of observations to build and test the model and we want to prevent bias, we will build and test the model using different subsets of the whole data set.  
+
+We built train sets of 300 out of the total 400 observations and test sets of the remaining 100 by random sampling (without replacement). We repeated this process 10 times for a 10 fold cross validation when we ran the regressions. 
